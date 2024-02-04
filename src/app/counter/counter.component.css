@@ -1,0 +1,6 @@
+.w-layout-grid {
+    display: flex;
+    justify-content: space-around;
+    background-color: darkviolet;
+    padding: 25px;
+}
