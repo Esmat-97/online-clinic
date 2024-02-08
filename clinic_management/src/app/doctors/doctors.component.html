@@ -1,9 +1,9 @@
-<input type="text" name="" id="">
-<button>search</button>
+<input type="text" [(ngModel)]="searchText" (input)="applyFilter()">
+
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 
-  @for( doctor of doctors; track doctors.id){
+  @for( doctor of  filterateData; track  filterateData.email){
     
     <div class="col">
 

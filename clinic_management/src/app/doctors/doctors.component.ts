@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DocRequestsService } from '../services/doc-requests.service';
@@ -11,7 +12,7 @@ import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-doctors',
   standalone: true,
-  imports: [CommonModule,HttpClientModule,NgFor,NavigateComponent],
+  imports: [CommonModule,HttpClientModule,NgFor,NavigateComponent,FormsModule],
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.css'
 })
@@ -20,8 +21,24 @@ import { Route, Router } from '@angular/router';
 export class DoctorsComponent implements OnInit{
 
   doctors: any[] = [];
+  filterateData: any[] = [];
+  searchText:any;
 
 constructor(private  DocRequests:DocRequestsService,private  router:Router){}
+
+
+ngOnInit(){
+
+  this.DocRequests.doctorList().subscribe(  (res:any)=>{ 
+     this.filterateData=res.results;
+    this.doctors = res.results; 
+   
+
+console.log(this.doctors); 
+
+})
+
+}
 
 
 handleNavigation(){
@@ -29,13 +46,18 @@ handleNavigation(){
 }
  
 
-ngOnInit(){
+applyFilter(){
 
-  this.DocRequests.doctorList().subscribe(  (res:any)=>{ 
-    this.doctors = res.results; 
-  console.log(this.doctors); })
-
+  if (this.searchText === '') {
+    this.filterateData = this.doctors; // Reset filter if search text is empty
+  } else {
+    this.filterateData = this.doctors.filter(item =>
+      item.name.first.toLowerCase().includes(this.searchText.toLowerCase()));
+  }
+  console.log(this.filterateData);
+  console.log(this.searchText);
 }
+
 }
 
 
