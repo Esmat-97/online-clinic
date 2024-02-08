@@ -12,11 +12,12 @@ import { TypesComponent } from './types/types.component';
 import { LocationsComponent } from './locations/locations.component';
 import { CounterComponent } from './counter/counter.component';
 import { PeoplesaysComponent } from './peoplesays/peoplesays.component';
+import { DoctorsComponent } from './doctors/doctors.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,HeaderComponent,FooterComponent,CarouslComponent,CardsComponent,HeroComponent,TypesComponent,LocationsComponent,CounterComponent,PeoplesaysComponent],
+  imports: [CommonModule, RouterOutlet,HeaderComponent,FooterComponent,CarouslComponent,CardsComponent,HeroComponent,TypesComponent,LocationsComponent,CounterComponent,PeoplesaysComponent,DoctorsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,0 +1,22 @@
+<input type="text" name="" id="">
+<button>search</button>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+  @for( doctor of doctors; track doctors.id){
+    
+    <div class="col">
+
+      <div class="card h-100">
+        <img [src]="doctor.picture.medium" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{doctor.email}}</h5>
+          <div class="card-text">{{doctor.gender}}</div>
+          <div class="card-text">{{doctor.phone}}</div>
+          <button (click)="handleNavigation()">navi</button>
+        </div>
+      </div>
+    </div>
+  }
+    </div>
+    

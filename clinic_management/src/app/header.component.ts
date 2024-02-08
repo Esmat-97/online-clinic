@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
+import { DoctorsComponent } from './doctors/doctors.component';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet,RouterLink],
+  imports: [RouterOutlet,RouterLink,DoctorsComponent],
   template: `
   <nav class="navbar navbar-expand-lg bg-info">
   <div class="container-fluid">
@@ -18,7 +19,7 @@ import { RouterLink } from '@angular/router';
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" routerLink="/doctors" aria-current="page" href="#">doctors</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
