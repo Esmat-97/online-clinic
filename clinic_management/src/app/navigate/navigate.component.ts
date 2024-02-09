@@ -36,10 +36,12 @@ private   DocRequests:DocRequestsService,
 
     this.DocRequests.doctorList().subscribe(  (res:any)=>{ console.log(res); 
     this.branched=res.results;
-   
+    console.log(this.branched); 
+
+
 
   
-    this. member = this.branched.find((member: any) => member.email === email);
+    this. member = this.branched.find((member: any) => member.email == email);
     if (this.member) {
       console.log( this.member);
     } else {

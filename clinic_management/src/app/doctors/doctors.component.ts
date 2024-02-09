@@ -14,7 +14,7 @@ import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-doctors',
   standalone: true,
-  imports: [CommonModule,HttpClientModule,NgFor,NavigateComponent,FormsModule],
+  imports: [CommonModule,HttpClientModule,NgFor,FormsModule,NavigateComponent],
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.css'
 })
@@ -41,13 +41,13 @@ console.log(this.doctors);
 
 }
 
-                                     /*           */
-
+                                      /*           */
 
 
 handleNavigation(email:any){
   this.router.navigate(['navi',email]);
 }
+
  
                                    /*           */
 
@@ -77,18 +77,27 @@ applyFilter(){
        }
 
 
-                                 /*         */
+                                 /*           */
 
 
 
-            filterFeMales(get:string){
+        filterFeMales(get:string){
 
-            this.filterateData = this.doctors.filter(item =>
-               item.gender === get);
-               console.log(get)
-               console.log(this.filterateData)
+        this.filterateData = this.doctors.filter(item => item.gender === get);
+           console.log(get)
+            console.log(this.filterateData)
                           
-                  }                     
+                  }                   
+                  
+
+                  
+                              /*            */      
+
+
+           delete(index:number){
+           this.doctors.splice(index,1)
+                                  }
+                                                    
 
 }
 

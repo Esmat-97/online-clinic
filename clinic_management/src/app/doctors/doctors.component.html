@@ -4,7 +4,7 @@ type="text"
  [(ngModel)]="searchText" 
  (input)="applyFilter()" 
  placeholder="Search...."
- style="margin-left:380px;margin-top: 50px;border-radius: 55px;">
+ style="margin-left:420px;margin-top: 50px;border-radius: 55px;">
 
 <br>
 <br>
@@ -18,22 +18,28 @@ type="text"
 <br>
 <br>
 
-<div class="row row-cols-1 row-cols-sm-4  row-cols-md-4 row-cols-lg-3 g-4">
+<div class="row row-cols-1 row-cols-sm-4  row-cols-md-4 row-cols-lg-6 g-4">
 
-  @for( doctor of  filterateData; track  filterateData.email){
+ 
     
-    <div class="col">
+    <div class="col" *ngFor="let doctor of filterateData ; let i = index">
 
-      <div class="card h-100">
-        <img [src]="doctor.picture.medium" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{doctor.email}}</h5>
-          <div class="card-text">{{doctor.gender}}</div>
-          <div class="card-text">{{doctor.phone}}</div>
-          <button (click)="handleNavigation(doctor.email)">navi</button>
-        </div>
-      </div>
+
+<div class="card h-100"  >
+  <img [src]="doctor.picture.large" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{doctor.email}}</h5>
+    <div class="card-text">{{doctor.gender}}</div>
+    <div class="card-text">{{doctor.phone}}</div>
+    <div style="justify-content: space-between;">
+    <button class="btn btn-primary" (click)="handleNavigation(doctor.email)">more</button>
+    <button class="btn btn-danger" (click)="delete(i)">delete</button>
+   
     </div>
-  }
+  </div>
+</div>
+    
+    </div>
+ 
     </div>
     
