@@ -41,12 +41,15 @@ console.log(this.doctors);
 
 }
 
+                                     /*           */
+
+
 
 handleNavigation(email:any){
   this.router.navigate(['navi',email]);
 }
  
-                                /*        */
+                                   /*           */
 
 applyFilter(){
 
@@ -62,7 +65,7 @@ applyFilter(){
 
 
 
-                                     /*       */
+                                     /*         */
 
 
        filterMales(get:string){
@@ -74,18 +77,18 @@ applyFilter(){
        }
 
 
-                                 /*      */
+                                 /*         */
 
 
 
             filterFeMales(get:string){
-              
+
             this.filterateData = this.doctors.filter(item =>
                item.gender === get);
                console.log(get)
                console.log(this.filterateData)
                           
-                                 }                     
+                  }                     
 
 }
 

@@ -30,20 +30,32 @@ private   DocRequests:DocRequestsService,
 
   ngOnInit(){
   
+    const email=this.activatedRoute.snapshot.params['email'];
+    console.log(email); 
+
+
     this.DocRequests.doctorList().subscribe(  (res:any)=>{ console.log(res); 
     this.branched=res.results;
+   
+
+  
+    this. member = this.branched.find((member: any) => member.email === email);
+    if (this.member) {
+      console.log( this.member);
+    } else {
+      console.log("Member not found");
+    }
+
+  
+  });
 
 
-    const email= this.activatedRoute.snapshot.params['email'];
-    console.log(email); 
-    console.log(this.branched);
-  console.log( this.branched.find((member:any)=>member.email==`${email}`))
-
-  })
+  
+  }
   
  
 
 
 
   }
-}
+
