@@ -1,27 +1,49 @@
+<app-header></app-header>
 
+<br>
+<br>
+
+<div style="display: flex;">
+
+
+
+
+<aside style="width: 25%;">
+  <div style="border: 3px blue solid;">
 <input 
 type="text"
  [(ngModel)]="searchText" 
  (input)="applyFilter()" 
  placeholder="Search...."
- style="margin-left:420px;margin-top: 50px;border-radius: 55px;">
+ style="margin-top: 20px;border-radius: 55px;">
 
 <br>
 <br>
 <div style="display: flex;">
 
 
-<button class="btn btn-outline-primary" (click)="filterMales('male')" style="margin-left:380px;">males</button>
-<button class="btn btn-outline-primary" (click)="filterFeMales('female')" style="margin-left:180px;">females</button>
+<button class="btn btn-outline-primary" (click)="filterMales('male')" style="margin-left: 20px;" >males</button>
+<button class="btn btn-outline-primary" (click)="filterFeMales('female')" style="margin-left: 40px;">females</button>
+</div>
 </div>
 
-<br>
-<br>
+</aside>
 
-<div class="row row-cols-1 row-cols-sm-4  row-cols-md-4 row-cols-lg-6 g-4">
 
- 
-    
+
+
+
+
+                                    <!--         -->
+
+
+
+
+
+<aside>
+
+<div class="row row-cols-1 row-cols-sm-4  row-cols-md-4 row-cols-lg-4 g-4">
+
     <div class="col" *ngFor="let doctor of filterateData ; let i = index">
 
 
@@ -43,3 +65,19 @@ type="text"
  
     </div>
     
+
+</aside>
+
+
+
+
+
+
+
+
+</div> 
+
+<br>
+<br>
+ 
+<app-footer></app-footer>

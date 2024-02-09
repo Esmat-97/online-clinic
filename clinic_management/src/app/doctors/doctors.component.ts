@@ -6,6 +6,8 @@ import { NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DocRequestsService } from '../services/doc-requests.service';
 import { NavigateComponent } from '../navigate/navigate.component';
+import { FooterComponent } from '../footer.component';
+import { HeaderComponent } from '../header.component';
 import { Route, Router } from '@angular/router';
 
 
@@ -14,7 +16,7 @@ import { Route, Router } from '@angular/router';
 @Component({
   selector: 'app-doctors',
   standalone: true,
-  imports: [CommonModule,HttpClientModule,NgFor,FormsModule,NavigateComponent],
+  imports: [CommonModule,HttpClientModule,NgFor,FormsModule,NavigateComponent,HeaderComponent,FooterComponent],
   templateUrl: './doctors.component.html',
   styleUrl: './doctors.component.css'
 })
