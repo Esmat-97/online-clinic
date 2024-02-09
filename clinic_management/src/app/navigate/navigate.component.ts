@@ -15,19 +15,35 @@ import { ActivatedRoute } from '@angular/router';
 
 export class NavigateComponent {
 
-  @Input () email ? :any; 
+   member:any;
+   
+   
+  branched:any;
+
+  @Input () email  :any; 
   
   constructor(
-    private  DocRequests:DocRequestsService,
-     private  activatedRoute:ActivatedRoute
+private   DocRequests:DocRequestsService,
+ private  activatedRoute:ActivatedRoute
       ){}
       
 
   ngOnInit(){
   
-    this.DocRequests.doctorListNavi(this.email).subscribe(  (res)=>{ 
+    this.DocRequests.doctorList().subscribe(  (res:any)=>{ console.log(res); 
+    this.branched=res.results;
 
-    console.log(res); })
+
+    const email= this.activatedRoute.snapshot.params['email'];
+    console.log(email); 
+    console.log(this.branched);
+  console.log( this.branched.find((item:any)=>item.email=='fernanda.gonzalez@example.com'))
+
+  })
   
+ 
+
+
+
   }
 }

@@ -12,7 +12,5 @@ export class DocRequestsService {
     return this.http.get('https://randomuser.me/api?results=50');
   }
 
-  doctorListNavi(email:any){
-    return this.http.get(`https://randomuser.me/api?results=50/${email}`);  
-  }
+  
 }

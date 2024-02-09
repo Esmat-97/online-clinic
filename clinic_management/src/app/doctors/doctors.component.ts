@@ -9,6 +9,8 @@ import { NavigateComponent } from '../navigate/navigate.component';
 import { Route, Router } from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-doctors',
   standalone: true,
@@ -33,7 +35,6 @@ ngOnInit(){
      this.filterateData=res.results;
     this.doctors = res.results; 
    
-
 console.log(this.doctors); 
 
 })
@@ -41,8 +42,8 @@ console.log(this.doctors);
 }
 
 
-handleNavigation(){
-  this.router.navigate(['/navi']);
+handleNavigation(email:any){
+  this.router.navigate(['navi',email]);
 }
  
 
