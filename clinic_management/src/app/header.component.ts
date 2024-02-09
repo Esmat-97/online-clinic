@@ -22,7 +22,7 @@ import { DoctorsComponent } from './doctors/doctors.component';
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" routerLink="doctors" href="#">doctors</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>
