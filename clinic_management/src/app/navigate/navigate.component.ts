@@ -18,7 +18,7 @@ export class NavigateComponent {
    member:any;
    
    
-  branched:any;
+  branched:any[]=[];
 
   @Input () email  :any; 
   
@@ -37,7 +37,7 @@ private   DocRequests:DocRequestsService,
     const email= this.activatedRoute.snapshot.params['email'];
     console.log(email); 
     console.log(this.branched);
-  console.log( this.branched.find((item:any)=>item.email=='fernanda.gonzalez@example.com'))
+  console.log( this.branched.find((member:any)=>member.email==`${email}`))
 
   })
   
