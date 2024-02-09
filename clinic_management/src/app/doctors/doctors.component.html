@@ -8,9 +8,17 @@ type="text"
 
 <br>
 <br>
+<div style="display: flex;">
 
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<button class="btn btn-outline-primary" (click)="filterMales('male')" style="margin-left:380px;">males</button>
+<button class="btn btn-outline-primary" (click)="filterFeMales('female')" style="margin-left:180px;">females</button>
+</div>
+
+<br>
+<br>
+
+<div class="row row-cols-1 row-cols-sm-4  row-cols-md-4 row-cols-lg-3 g-4">
 
   @for( doctor of  filterateData; track  filterateData.email){
     

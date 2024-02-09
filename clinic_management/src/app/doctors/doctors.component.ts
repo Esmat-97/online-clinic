@@ -46,6 +46,7 @@ handleNavigation(email:any){
   this.router.navigate(['navi',email]);
 }
  
+                                /*        */
 
 applyFilter(){
 
@@ -58,6 +59,33 @@ applyFilter(){
   console.log(this.filterateData);
   console.log(this.searchText);
 }
+
+
+
+                                     /*       */
+
+
+       filterMales(get:string){
+        this.filterateData = this.doctors.filter(item =>
+          item.gender === get);
+          console.log(get)
+          console.log(this.filterateData)
+
+       }
+
+
+                                 /*      */
+
+
+
+            filterFeMales(get:string){
+              
+            this.filterateData = this.doctors.filter(item =>
+               item.gender === get);
+               console.log(get)
+               console.log(this.filterateData)
+                          
+                                 }                     
 
 }
 
