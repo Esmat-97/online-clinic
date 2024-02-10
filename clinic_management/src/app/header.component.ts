@@ -3,12 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 import { DoctorsComponent } from './doctors/doctors.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,DoctorsComponent],
+  imports: [RouterOutlet,RouterLink,DoctorsComponent,CartComponent],
   template: `
   <nav class="navbar navbar-expand-lg bg-info">
   <div class="container-fluid">
@@ -25,7 +26,7 @@ import { DoctorsComponent } from './doctors/doctors.component';
           <a class="nav-link" routerLink="doctors" href="#">doctors</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" routerLink="cart" href="#">cart</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DocRequestsService } from '../services/doc-requests.service';
+import { AddcartService } from '../services/addcart.service';
 import { NavigateComponent } from '../navigate/navigate.component';
 import { FooterComponent } from '../footer.component';
 import { HeaderComponent } from '../header.component';
@@ -28,7 +29,10 @@ export class DoctorsComponent implements OnInit{
   filterateData: any[] = [];
   searchText:any;
 
-constructor(private  DocRequests:DocRequestsService,private  router:Router){}
+constructor(
+  private  DocRequests:DocRequestsService
+  ,private  router:Router
+  ,private cartService: AddcartService){}
 
 
 ngOnInit(){
@@ -93,12 +97,26 @@ applyFilter(){
                   
 
                   
-                              /*            */      
+          /*                      */      
 
 
            delete(index:number){
            this.doctors.splice(index,1)
                                   }
+
+
+          /*                      */           
+                 
+          
+
+          addToCart(doctor:any){
+            console.log(doctor)
+            this.cartService.addToCart(doctor);
+            window.alert('Product added to cart');
+        
+          }
+
+
                                                     
 
 }
