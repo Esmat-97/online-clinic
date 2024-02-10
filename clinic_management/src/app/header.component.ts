@@ -20,7 +20,7 @@ import { CartComponent } from './cart/cart.component';
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" routerLink="" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="doctors" href="#">doctors</a>
