@@ -1,55 +1,48 @@
 import { Component} from '@angular/core';
-import { DocRequestsService } from '../services/doc-requests.service';
-import { Input } from '@angular/core';
+import { inject } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-navigate',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './navigate.component.html',
   styleUrl: './navigate.component.css'
 })
 
 
 
-export class NavigateComponent {
+export class NavigateComponent implements OnInit {
 
-   member:any;
-   
-   
-  branched:any[]=[];
 
-  @Input () email  :any; 
-  
-  constructor(
-private   DocRequests:DocRequestsService,
- private  activatedRoute:ActivatedRoute
-      ){}
+  constructor(private  activatedRoute:ActivatedRoute ){}
       
+      hub:any;
+      data:any=[];
+      httpCliet=inject(HttpClient)
+    
+      ngOnInit() {
 
-  ngOnInit(){
-  
-    const email=this.activatedRoute.snapshot.params['email'];
+
+        const email=this.activatedRoute.snapshot.params['email'];
     console.log(email); 
 
 
-    this.DocRequests.doctorList().subscribe(  (res:any)=>{ console.log(res); 
-    this.branched=res.results;
-    console.log(this.branched); 
-
-
+      
+        this.httpCliet.get('https://randomuser.me/api?results=50').subscribe((res:any)=>{
+          console.log(res.results)
+          this.data=res.results
+          console.log(this.data[3]); 
+        })
+      }
+  
+ 
 
   
-    this. member = this.branched.find((member: any) => member.email == email);
-    if (this.member) {
-      console.log( this.member);
-    } else {
-      console.log("Member not found");
-    }
-
   
-  });
 
 
   
@@ -59,5 +52,5 @@ private   DocRequests:DocRequestsService,
 
 
 
-  }
+  
 
