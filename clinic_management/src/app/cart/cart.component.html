@@ -5,10 +5,11 @@
     <div class="col" *ngFor="let i of items">
 
       <div class="card h-100">
-        <img [src]="i.picture.large" class="card-img-top" alt="...">
+
         <div class="card-body">
-          <h5 class="card-title">{{i.email}}</h5>
-          <p class="card-text"> {{i.gender}}</p>
+          <h5 class="card-title">{{i.name}}</h5>
+          <div class="card-text">{{i.specialty}}</div>
+          <div class="card-text">{{i.location}}</div>
         </div>
       </div>
     </div>

@@ -9,8 +9,10 @@ export class DocRequestsService {
   constructor(private http:HttpClient) { }
 
   doctorList(){
-    return this.http.get('https://randomuser.me/api?results=50');
+    return this.http.get('http://localhost:1999');
   }
 
+  
+  
   
 }

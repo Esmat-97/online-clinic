@@ -22,8 +22,8 @@ type="text"
 <div style="display: flex;">
 
 
-<button class="btn btn-outline-primary" (click)="filterMales('male')" style="margin-left: 20px;" >males</button>
-<button class="btn btn-outline-primary" (click)="filterFeMales('female')" style="margin-left: 40px;">females</button>
+<button class="btn btn-outline-primary" (click)="filterMales('Male')" style="margin-left: 20px;" >males</button>
+<button class="btn btn-outline-primary" (click)="filterFeMales('Female')" style="margin-left: 40px;">females</button>
 </div>
 </div>
 
@@ -48,13 +48,13 @@ type="text"
 
 
 <div class="card h-100"  >
-  <img [src]="doctor.picture.large" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">{{doctor.email}}</h5>
-    <div class="card-text">{{doctor.gender}}</div>
-    <div class="card-text">{{doctor.phone}}</div>
+    <h5 class="card-title">{{doctor.name}}</h5>
+    <div class="card-text">{{doctor.specialty}}</div>
+    <div class="card-text">{{doctor.location}}</div>
+    <div class="card-text">{{doctor.hospital}}</div>
     <div style="justify-content: space-between;">
-    <button class="btn btn-primary" (click)="handleNavigation(doctor.email)">more</button>
+    <button class="btn btn-primary" (click)="handleNavigation(doctor.name)">more</button>
     <button class="btn btn-danger" (click)="delete(i)">delete</button>
     <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>
    

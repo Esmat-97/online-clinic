@@ -35,15 +35,22 @@ constructor(
   ,private cartService: AddcartService){}
 
 
+
+
+
+
 ngOnInit(){
 
   this.DocRequests.doctorList().subscribe(  (res:any)=>{ 
-     this.filterateData=res.results;
-    this.doctors = res.results; 
+     this.filterateData=res;
+    this.doctors = res; 
    
 console.log(this.doctors); 
 
-})
+  });
+
+  
+
 
 }
 
@@ -63,7 +70,7 @@ applyFilter(){
     this.filterateData = this.doctors; // Reset filter if search text is empty
   } else {
     this.filterateData = this.doctors.filter(item =>
-      item.name.first.toLowerCase().includes(this.searchText.toLowerCase()));
+      item.name.toLowerCase().includes(this.searchText.toLowerCase()));
   }
   console.log(this.filterateData);
   console.log(this.searchText);
