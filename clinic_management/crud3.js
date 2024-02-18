@@ -17,21 +17,30 @@ database:'node'
 });
 
 
+app.get('/', (req, res) => {
+  con.query("SELECT * FROM Doctors", (err, doctorsResult) => {
+      if (err) {
+          console.error("Error executing doctors query:", err);
+          return res.status(500).json({ error: "Failed to fetch doctors data" });
+      }
 
-app.get('/',(req,res)=>{
-  const query = "SELECT * FROM  Doctors";
-  con.query(query, (err, result) => {
-    if (err) {
-        // If an error occurs, send an error response
-        console.error("Error executing query:", err);
-        res.status(500).json({ error: "Failed to fetch data" });
-    } else {
-        // If successful, send the fetched data as a response
-        res.json(result);
-    }
+      con.query("SELECT * FROM sign", (err, signResult) => {
+          if (err) {
+              console.error("Error executing sign query:", err);
+              return res.status(500).json({ error: "Failed to fetch sign data" });
+          }
+
+          res.json({ doctors: doctorsResult, signs: signResult });
+      });
+  });
 });
+
+
     
-});
+
+
+
+
 
 
 app.post('/api', (req, res) => {
@@ -47,6 +56,18 @@ app.post('/api', (req, res) => {
 });
 
 
+
+app.post('/sign', (req, res) => {
+  const { username, password} = req.body;
+  
+  // Insert data into MySQL
+  const query = 'INSERT INTO sign (username, password) VALUES (?,?)';
+  con.query(query, [ username, password ], (error, results) => {
+    if (error) throw error;
+    console.log('Data inserted into MySQL');
+    res.send('Data inserted into MySQL');
+  });
+});
 
 
 

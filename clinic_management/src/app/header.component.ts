@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
 
 import { DoctorsComponent } from './doctors/doctors.component';
 import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login component ';
+import { AuthService } from './services/auth.service';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,DoctorsComponent,CartComponent],
+  imports: [RouterOutlet,RouterLink,DoctorsComponent,CartComponent,LoginComponent],
   template: `
   <nav class="navbar navbar-expand-lg bg-info">
   <div class="container-fluid">
@@ -28,16 +30,11 @@ import { CartComponent } from './cart/cart.component';
         <li class="nav-item">
           <a class="nav-link" routerLink="cart" href="#">cart</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown link
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
+  
+        <li class="nav-item ">
+    <button (click)="do()">logout</button>
+      </li>
+
       </ul>
     </div>
   </div>
@@ -47,5 +44,11 @@ import { CartComponent } from './cart/cart.component';
 })
 export class HeaderComponent {
   title = 'my-project';
-  
+  constructor(private router:Router , private auth:AuthService){}
+
+  do(){
+    this.auth.logout();
+  }
+
+
 }

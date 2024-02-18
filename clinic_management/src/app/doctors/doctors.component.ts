@@ -42,8 +42,8 @@ constructor(
 ngOnInit(){
 
   this.DocRequests.doctorList().subscribe(  (res:any)=>{ 
-     this.filterateData=res;
-    this.doctors = res; 
+     this.filterateData=res.doctors;
+    this.doctors = res.doctors; 
    
 console.log(this.doctors); 
 
