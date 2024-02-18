@@ -18,3 +18,7 @@ Here's how you can use this project:
 $ npm init @angular myApp
 $ cd myApp
 $ npm start
+```
+# Demo
+[Screencast from 2024-02-18 19-56-45.webm](https://github.com/Esmat-97/online-clinic/assets/158211063/c66de57b-fcd4-40de-a9d1-bb55948ff4a0)
+
