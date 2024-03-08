@@ -1,4 +1,4 @@
-use node;
+-- use clinic;
 -- drop table Doctors;
 -- CREATE TABLE Doctors (
 --     id INT AUTO_INCREMENT PRIMARY KEY,
