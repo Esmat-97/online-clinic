@@ -32,7 +32,7 @@ import { AuthService } from './services/auth.service';
         </li>
   
         <li class="nav-item ">
-    <button (click)="do()">logout</button>
+    <button (click)="do()">login</button>
       </li>
 
       </ul>
@@ -44,10 +44,12 @@ import { AuthService } from './services/auth.service';
 })
 export class HeaderComponent {
   title = 'my-project';
-  constructor(private router:Router , private auth:AuthService){}
+
+  constructor(private router:Router , 
+    private auth:AuthService){}
 
   do(){
-    this.auth.logout();
+    this.router.navigate(['/login'])
   }
 
 

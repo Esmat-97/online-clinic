@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     } else {
      
         // If form values do not match stored token, redirect to login page
-        this.router.navigate(['/sign']);
+        this.router.navigate(['']);
         return false;
       }
     }
