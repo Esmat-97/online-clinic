@@ -27,11 +27,39 @@ import { HttpClient } from '@angular/common/http';
   
   <br>
 
+  <input type="text" name="email"  placeholder="email"  required  #email="ngModel"  ngModel>
+  @if(email.invalid && email.touched){
+  @if(email.errors?.['required']){
+    <span> the email is required </span>
+      }
+  }
+  
+  <br>
+
+
+  <input type="text" name="phone"  placeholder="phone"  required  #phone="ngModel"  ngModel>
+  @if(phone.invalid && phone.touched){
+  @if(phone.errors?.['required']){
+    <span> the phone is required </span>
+      }
+  }
+  
+  <br>
 
   <input type="password" name="password"  placeholder="password"  required  #password="ngModel"  ngModel>
   @if(password.invalid && password.touched){
   @if(password.errors?.['required']){
     <span> the password is required </span>
+      }
+  }
+
+
+  <br>
+
+  <input type="text" name="role"  placeholder="patient or doctor"  required  #role="ngModel"  ngModel>
+  @if(role.invalid && role.touched){
+  @if(role.errors?.['required']){
+    <span> the role is required </span>
       }
   }
 
@@ -115,7 +143,8 @@ export class SignComponent {
   };
 
 
-  constructor(private http: HttpClient ,private router:Router) {}
+  constructor(private http: HttpClient ,
+    private router:Router) {}
 
 
 handleSubmit(main:any) {
@@ -123,8 +152,9 @@ handleSubmit(main:any) {
   this.formData=main.value;
   console.log(this.formData);
 
-  this.http.post('http://localhost:1999/sign', this.formData).subscribe( response => {
+  this.http.post('http://localhost:1999/guests/signin', this.formData).subscribe( response => {
       console.log('Data sent successfully');
+      main.resetForm();
     },
     error => {
       console.error('Error occurred:', error);

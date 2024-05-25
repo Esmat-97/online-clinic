@@ -109,16 +109,7 @@ handleSubmit(main:any) {
   this.formData=main.value;
   console.log(this.formData);
 
- localStorage.setItem('token',JSON.stringify( this.data));
 
- for ( let x of this.data){
-
- 
- if(x.username === this.formData.username && x.password === this.formData.password){
-   this.router.navigate(['/']);
- }
- 
- }
 }
 
 
