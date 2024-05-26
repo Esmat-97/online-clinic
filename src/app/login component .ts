@@ -17,10 +17,10 @@ import { inject } from '@angular/core';
 
 
 
-  <input type="text" name="username"  placeholder="username"  required  #username="ngModel"  ngModel>
-  @if(username.invalid && username.touched){
-  @if(username.errors?.['required']){
-    <span> the username is required </span>
+  <input type="text" name="email"  placeholder="email"  required  #email="ngModel"  ngModel>
+  @if(email.invalid && email.touched){
+  @if(email.errors?.['required']){
+    <span> the email is required </span>
       }
   }
   
@@ -84,32 +84,37 @@ input[type="submit"]:hover {
 export class LoginComponent {
   title = 'my-project';
 
-  constructor(private authservice:AuthService , private router:Router){}
+  constructor(private authservice:AuthService 
+    , private router:Router){}
 
 
   formData :any=[];
-  data:any=[];
-
+  fetcheddata:any=[];
 
   httpCliet=inject(HttpClient)
-
-  ngOnInit(): void {
-  this.fetchData()
-  }
-  fetchData(){
-    this.httpCliet.get('http://localhost:1999')
-    .subscribe((data:any)=>{
-      console.log(data.signs)
-      this.data=data.signs;
-    })
-  }
 
 handleSubmit(main:any) {
 
   this.formData=main.value;
   console.log(this.formData);
 
+  this.httpCliet.post('http://localhost:1999/guests/login',this.formData).subscribe((data:any)=>{
+   this.fetcheddata=data
+      
+   const info = data[0];
 
+   if (info) {
+     // Data is available, you can proceed with storing in localStorage or any other operations
+     localStorage.setItem('email', info.email);
+     localStorage.setItem('role', info.role);
+     localStorage.setItem('username', info.username);
+     localStorage.setItem('user_id', info.id);
+     this.router.navigate(['/']);
+   } else {
+     console.log('No data returned.');
+   }
+    })
+  
 }
 
 

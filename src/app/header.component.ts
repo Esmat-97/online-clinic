@@ -49,6 +49,7 @@ export class HeaderComponent {
     private auth:AuthService){}
 
   do(){
+    this.auth.logout()
     this.router.navigate(['/login'])
   }
 

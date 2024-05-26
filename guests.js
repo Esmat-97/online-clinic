@@ -45,4 +45,24 @@ app.post('/signin', (req, res) => {
 
 
 
+
+
+
+app.post('/login', (req, res) => {
+  const {  email, password } = req.body;
+  // Insert data into MySQL
+  const query = 'select * from guests where email = ? AND password = ? ';
+
+  con.query(query, [  email , password ], (error, results) => {
+    if (error) {
+      console.error("Error executing query:", error);
+      res.status(500).json({ error: "Failed to fetch data" });
+  } else {
+      res.json(results);
+  }
+  });
+});
+
+
+
 module.exports = app;

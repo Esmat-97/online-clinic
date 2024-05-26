@@ -16,8 +16,11 @@ export class AuthService {
 
   logout(): void {
     // Clear authentication token from local storage
-    localStorage.removeItem('token');
-    this.router.navigate(['/sign']);
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user_id');
+    this.router.navigate(['/login']);
   }
 
   isLoggedIn(): boolean {
