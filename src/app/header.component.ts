@@ -6,12 +6,13 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login component ';
 import { AuthService } from './services/auth.service';
-
+import { NgClass } from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,DoctorsComponent,CartComponent,LoginComponent],
+  imports: [RouterOutlet,RouterLink,DoctorsComponent,CartComponent,LoginComponent,NgClass,NgStyle],
   template: `
   <nav class="navbar navbar-expand-lg bg-info">
   <div class="container-fluid">
@@ -32,9 +33,23 @@ import { AuthService } from './services/auth.service';
         </li>
   
         <li class="nav-item ">
-    <button (click)="do()">login</button>
+    <a class="nav-link"  (click)="do()">login</a>
       </li>
 
+      @if(role === 'admin'){
+      <div class="dropdown" >
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleDropdown()">
+        Admin list
+      </button>
+      <ul class="dropdown-menu" [ngStyle]="{'display': isDropdownOpen ? 'block' : 'none'}">
+        <li><a class="dropdown-item" routerLink="users"> users</a></li>
+        <li><a class="dropdown-item" routerLink="msgs"> msgs</a></li>
+        <li><a class="dropdown-item" routerLink="showreview"> reviews</a></li>
+        <li><a class="dropdown-item" routerLink="Addproduct">Add products</a></li>
+        <li><a class="dropdown-item"  routerLink="Addusers">Add users</a></li>
+      </ul>
+    </div>
+      }
       </ul>
     </div>
   </div>
@@ -43,8 +58,8 @@ import { AuthService } from './services/auth.service';
   styles: [``]
 })
 export class HeaderComponent {
-  title = 'my-project';
 
+  /*   */
   constructor(private router:Router , 
     private auth:AuthService){}
 
@@ -54,4 +69,18 @@ export class HeaderComponent {
   }
 
 
+
+  /*   */
+  isDropdownOpen: boolean = false;
+  toggleDropdown(){
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+
+
+  /*   */
+  role:string='';
+  ngOnInit(){
+this.role= localStorage.getItem('role') as string
+  }
 }
