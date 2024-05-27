@@ -16,8 +16,6 @@ import { HttpClient } from '@angular/common/http';
   <h1>  sign in  </h1>
   <form #main="ngForm" (ngSubmit)="handleSubmit(main)">
 
-
-
   <input type="text" name="username"  placeholder="username"  required  #username="ngModel"  ngModel>
   @if(username.invalid && username.touched){
   @if(username.errors?.['required']){
@@ -56,13 +54,52 @@ import { HttpClient } from '@angular/common/http';
 
   <br>
 
-  <input type="text" name="role"  placeholder="patient or doctor"  required  #role="ngModel"  ngModel>
-  @if(role.invalid && role.touched){
-  @if(role.errors?.['required']){
-    <span> the role is required </span>
+
+
+
+  <select
+  class="form-select"
+  name='role'
+  required  #role="ngModel"  ngModel
+  (change)="onRoleChange($event)"
+>
+  <option disabled selected>Select a role...</option>
+  <option value="patient">Patient</option>
+  <option value="doctor">Doctor</option>
+  <option value="Admin">Admin</option>
+</select>
+<br>
+
+
+@if(isDoc){
+  
+  <input type="text" name="hospital"  placeholder="hospital"  required  #hospital="ngModel"  ngModel>
+  @if(hospital.invalid && hospital.touched){
+  @if(hospital.errors?.['required']){
+    <span> the hospital is required </span>
       }
   }
 
+  <br>
+
+  
+  <input type="text" name="specialty"  placeholder="specialty"  required  #specialty="ngModel"  ngModel>
+  @if(specialty.invalid && specialty.touched){
+  @if(specialty.errors?.['required']){
+    <span> the specialty is required </span>
+      }
+  }
+
+  <br>
+
+  
+  <input type="text" name="location"  placeholder="location"  required  #location="ngModel"  ngModel>
+  @if(location.invalid && location.touched){
+  @if(location.errors?.['required']){
+    <span> the location is required </span>
+      }
+  }
+}
 
   <input type="submit">
 <p>if you have account <a  (click)="go()">login</a> </p>
@@ -129,10 +166,6 @@ input[type="submit"] {
 })
 
 export class SignComponent {
-  title = 'my-project';
-
-  
-  
 
   local:any [] =[];
 
@@ -142,7 +175,7 @@ export class SignComponent {
 
   };
 
-
+/*    */
   constructor(private http: HttpClient ,
     private router:Router) {}
 
@@ -165,8 +198,22 @@ handleSubmit(main:any) {
 }
 
 
+
+/*   */
 go(){
   this.router.navigate(['/login'])
+}
+
+
+
+/*   */
+isDoc:boolean=false
+onRoleChange(event: any) {
+  if (event.target.value === 'doctor') {
+    this.isDoc = true
+  } else {
+    this.isDoc = false
+  }
 }
 
 }

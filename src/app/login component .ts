@@ -15,8 +15,6 @@ import { inject } from '@angular/core';
   template: `
   <form #main="ngForm" (ngSubmit)="handleSubmit(main)">
 
-
-
   <input type="text" name="email"  placeholder="email"  required  #email="ngModel"  ngModel>
   @if(email.invalid && email.touched){
   @if(email.errors?.['required']){
@@ -36,6 +34,7 @@ import { inject } from '@angular/core';
 
 
   <input type="submit">
+  <p>if you donthave account <a  (click)="go()">sign</a> </p>
   </form>
               `,
   styles: [`
@@ -118,5 +117,9 @@ handleSubmit(main:any) {
 }
 
 
+
+go(){
+  this.router.navigate(['/sign'])
+}
 
 }

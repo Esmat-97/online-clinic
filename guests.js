@@ -33,10 +33,10 @@ database:'clinic'
 
 
 app.post('/signin', (req, res) => {
-  const { username, email, phone , password ,role } = req.body;
+  const { username, email, phone , password ,role ,  hospital , specialty , location } = req.body;
   // Insert data into MySQL
-  const query = 'INSERT INTO guests (username , email, phone, password , role) VALUES (?,?,?,?,?)';
-  con.query(query, [ username, email, phone, password , role ], (error, results) => {
+  const query = 'INSERT INTO guests (username , email, phone, password , role , hospital , specialty , location ) VALUES (?,?,?,?,?, ?,?,?)';
+  con.query(query, [ username, email, phone, password , role , hospital , specialty , location  ], (error, results) => {
     if (error) throw error;
     console.log('Data inserted into MySQL');
     res.send('Data inserted into MySQL');
