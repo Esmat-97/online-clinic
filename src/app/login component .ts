@@ -88,7 +88,6 @@ export class LoginComponent {
 
 
   formData :any=[];
-  fetcheddata:any=[];
 
   httpCliet=inject(HttpClient)
 
@@ -98,9 +97,9 @@ handleSubmit(main:any) {
   console.log(this.formData);
 
   this.httpCliet.post('http://localhost:1999/guests/login',this.formData).subscribe((data:any)=>{
-   this.fetcheddata=data
-      
-   const info = data[0];
+    console.log(data)
+
+   const info = data.user;
 
    if (info) {
      // Data is available, you can proceed with storing in localStorage or any other operations
@@ -108,6 +107,7 @@ handleSubmit(main:any) {
      localStorage.setItem('role', info.role);
      localStorage.setItem('username', info.username);
      localStorage.setItem('user_id', info.id);
+     localStorage.setItem('token', data.token);
      this.router.navigate(['/']);
    } else {
      console.log('No data returned.');
