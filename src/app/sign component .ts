@@ -59,6 +59,20 @@ import { HttpClient } from '@angular/common/http';
 
   <select
   class="form-select"
+  name='gender'
+  required  #gender="ngModel"  ngModel
+>
+  <option disabled selected>Select a gender...</option>
+  <option value="male">male</option>
+  <option value="female">female</option>
+</select>
+
+
+<br>
+
+
+  <select
+  class="form-select"
   name='role'
   required  #role="ngModel"  ngModel
   (change)="onRoleChange($event)"
@@ -77,6 +91,16 @@ import { HttpClient } from '@angular/common/http';
   @if(hospital.invalid && hospital.touched){
   @if(hospital.errors?.['required']){
     <span> the hospital is required </span>
+      }
+  }
+
+  <br>
+
+
+  <input type="text" name="years_of_experience"  placeholder="years_of_experience"  required  #years_of_experience="ngModel"  ngModel>
+  @if(years_of_experience.invalid && years_of_experience.touched){
+  @if(years_of_experience.errors?.['required']){
+    <span> the years_of_experience is required </span>
       }
   }
 

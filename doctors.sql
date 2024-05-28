@@ -18,6 +18,7 @@
 -- ('Dr. Emily Davis', 'Ophthalmology', 8, 'Eye Center', 'Houston', 'Female'),
 -- ('Dr. Robert Wilson', 'Orthopedics', 12, 'Bone Hospital', 'Philadelphia', 'Male'),
 -- ('Dr. Jennifer Lee', 'Obstetrics and Gynecology', 18, 'Women\'s Hospital', 'San Francisco', 'Female'),
+
 -- ('Dr. David Martinez', 'Neurology', 14, 'Brain Institute', 'Dallas', 'Male'),
 -- ('Dr. Amy Thompson', 'Psychiatry', 9, 'Mental Health Clinic', 'Miami', 'Female'),
 -- ('Dr. Richard White', 'Urology', 16, 'Bladder Center', 'Seattle', 'Male'),

@@ -42,7 +42,7 @@ type="text"
 
 <aside>
 
-<div class="row row-cols-1 row-cols-sm-4  row-cols-md-4 row-cols-lg-4 g-4">
+<div class="row row-cols-1 row-cols-sm-5  row-cols-md-8   row-cols-lg-6  g-4">
 
     <div class="col" *ngFor="let doctor of filterateData ; let i = index">
 
@@ -55,7 +55,7 @@ type="text"
     <div class="card-text">{{doctor.hospital}}</div>
     <div style="justify-content: space-between;">
 
-      @if(role == 'admin'){
+      @if(role == 'Admin'){
        <button class="btn btn-primary" (click)="handleNavigation(doctor.id)">more</button>
     <button class="btn btn-danger" (click)="delete(doctor.id)">delete</button>
     <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>

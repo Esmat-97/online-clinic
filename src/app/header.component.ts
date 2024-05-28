@@ -36,7 +36,7 @@ import { NgStyle } from '@angular/common';
     <a class="nav-link"  (click)="do()">login</a>
       </li>
 
-      @if(role === 'admin'){
+      @if(role =='Admin'){
       <div class="dropdown" >
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleDropdown()">
         Admin list

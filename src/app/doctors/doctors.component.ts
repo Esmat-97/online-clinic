@@ -59,7 +59,7 @@ handleNavigation(id:any){
 }
 
  
-                                   /*           */
+  /*           */
 
 applyFilter(){
 
@@ -67,7 +67,7 @@ applyFilter(){
     this.filterateData = this.doctors; // Reset filter if search text is empty
   } else {
     this.filterateData = this.doctors.filter(item =>
-      item.name.toLowerCase().includes(this.searchText.toLowerCase()));
+        item.username.toLowerCase().includes(this.searchText.toLowerCase()));
   }
   console.log(this.filterateData);
   console.log(this.searchText);
@@ -75,8 +75,8 @@ applyFilter(){
 
 
 
-       /*         */
-
+    /*         */
+ 
 
        filterMales(get:string){
         this.filterateData = this.doctors.filter(item => item.gender === get);
@@ -86,9 +86,9 @@ applyFilter(){
        }
 
 
-      /*           */
 
-
+       
+     /*           */
 
         filterFeMales(get:string){
 
@@ -97,13 +97,12 @@ applyFilter(){
             console.log(this.filterateData)
                           
                   }                   
-                  
-
-                  
-     /*               */      
 
 
-        delete(id:number){   
+     /*            */      
+
+
+    delete(id:number){   
 
      console.log(id)
   this.httpCliet.delete(`http://localhost:1999/doctor?id=${id}`).subscribe(  (res:any)=>{ 
@@ -113,11 +112,11 @@ applyFilter(){
            }
 
 
-          /*                      */           
+
+   /*              */           
                  
           
-
-          addToCart(doctor:any){
+         addToCart(doctor:any){
             console.log(doctor)
             this.cartService.addToCart(doctor);
             window.alert('Product added to cart');
