@@ -19,7 +19,7 @@ database:'clinic'
 
 
 
-
+/*   */
 
 app.post('/signin', (req, res) => {
   const { username, email, phone , password ,role ,  hospital , specialty , location } = req.body;

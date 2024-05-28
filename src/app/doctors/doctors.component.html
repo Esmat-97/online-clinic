@@ -49,14 +49,18 @@ type="text"
 
 <div class="card h-100"  >
   <div class="card-body">
-    <h5 class="card-title">{{doctor.name}}</h5>
+    <h5 class="card-title">{{doctor.username}}</h5>
     <div class="card-text">{{doctor.specialty}}</div>
     <div class="card-text">{{doctor.location}}</div>
     <div class="card-text">{{doctor.hospital}}</div>
     <div style="justify-content: space-between;">
-    <button class="btn btn-primary" (click)="handleNavigation(doctor.name)">more</button>
-    <button class="btn btn-danger" (click)="delete(i)">delete</button>
+
+      @if(role == 'admin'){
+       <button class="btn btn-primary" (click)="handleNavigation(doctor.id)">more</button>
+    <button class="btn btn-danger" (click)="delete(doctor.id)">delete</button>
     <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>
+      }
+
    
     </div>
   </div>

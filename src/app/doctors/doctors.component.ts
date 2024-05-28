@@ -3,13 +3,13 @@ import { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { DocRequestsService } from '../services/doc-requests.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddcartService } from '../services/addcart.service';
 import { NavigateComponent } from '../navigate/navigate.component';
 import { FooterComponent } from '../footer.component';
 import { HeaderComponent } from '../header.component';
 import { Route, Router } from '@angular/router';
+import { inject } from '@angular/core';
 
 
 
@@ -30,35 +30,32 @@ export class DoctorsComponent implements OnInit{
   searchText:any;
 
 constructor(
-  private  DocRequests:DocRequestsService
-  ,private  router:Router
+  private  router:Router
   ,private cartService: AddcartService){}
+  httpCliet=inject(HttpClient)
 
 
-
-
-
+role:string='';
 
 ngOnInit(){
+  
+  this.role=localStorage.getItem('role') as string
 
-  this.DocRequests.doctorList().subscribe(  (res:any)=>{ 
-     this.filterateData=res.doctors;
-    this.doctors = res.doctors; 
-   
-console.log(this.doctors); 
+  this.httpCliet.get('http://localhost:1999/doctor').subscribe(  (res:any)=>{ 
+     this.filterateData=res;
+    this.doctors = res; 
+    console.log(res); 
 
   });
 
-  
-
-
 }
 
-                                      /*           */
+
+/*           */
 
 
-handleNavigation(email:any){
-  this.router.navigate(['navi',email]);
+handleNavigation(id:any){
+  this.router.navigate(['navi',id]);
 }
 
  
@@ -78,19 +75,18 @@ applyFilter(){
 
 
 
-                                     /*         */
+       /*         */
 
 
        filterMales(get:string){
-        this.filterateData = this.doctors.filter(item =>
-          item.gender === get);
+        this.filterateData = this.doctors.filter(item => item.gender === get);
           console.log(get)
           console.log(this.filterateData)
 
        }
 
 
-                                 /*           */
+      /*           */
 
 
 
@@ -104,12 +100,17 @@ applyFilter(){
                   
 
                   
-          /*                      */      
+     /*               */      
 
 
-           delete(index:number){
-           this.doctors.splice(index,1)
-                                  }
+        delete(id:number){   
+
+     console.log(id)
+  this.httpCliet.delete(`http://localhost:1999/doctor?id=${id}`).subscribe(  (res:any)=>{ 
+   console.log(res); 
+ });
+
+           }
 
 
           /*                      */           
