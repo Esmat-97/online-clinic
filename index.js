@@ -1,9 +1,9 @@
 const express = require('express');
-const guestsRouter = require('./guests');
+const AuthRouter = require('./Auth');
 
 
 const app = express();
-app.use('/guests', guestsRouter);
+app.use('/Auth', AuthRouter);
 
 
 const port = 1999;

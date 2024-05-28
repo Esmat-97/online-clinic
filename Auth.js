@@ -34,6 +34,10 @@ app.post('/signin', (req, res) => {
 
 
 
+
+
+/*    */
+
 const secretKey = '111';
 
 app.post('/login', (req, res) => {
@@ -61,7 +65,6 @@ app.post('/login', (req, res) => {
     const payload = { email };
     const token = jwt.sign(payload, secretKey, { expiresIn: '30m' });
 
-    console.log(token);
 
     // Send response
     res.json({
@@ -75,29 +78,36 @@ app.post('/login', (req, res) => {
 
 
 
-// app.post('/login', (req, res) => {
-//   const {  email, password } = req.body;
-//   // Insert data into MySQL
-//   const query = 'select * from guests where email = ? AND password = ? ';
+/*    */
 
-//   const payload = {
-//     email : email
-// };
 
-// const token = jwt.sign(payload, secretKey, { expiresIn: '30m' });
+app.post('/logout', (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
 
-// console.log(token);
+  if (!token) {
+    return res.status(400).json({ error: 'Token is required' });
+  }
 
-//   con.query(query, [  email , password ], (error, results) => {
-//     if (error) {
-//       console.error("Error executing query:", error);
-//       res.status(500).json({ error: "Failed to fetch data" });
-//   } else {
-//       res.json(results , token);
-//   }
-//   });
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    tokenBlacklist.add(token); // Add token to the blacklist
+    res.json({ message: 'Logout successful' });
+  } catch (error) {
+    res.status(401).json({ error: 'Invalid token' });
+  }
+});
 
-// });
+
+app.use((req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
+    if (tokenBlacklist.has(token)) {
+      return res.status(401).json({ error: 'Token is blacklisted' });
+    }
+  }
+  next();
+});
 
 
 

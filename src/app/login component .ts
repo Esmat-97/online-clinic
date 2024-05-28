@@ -96,7 +96,7 @@ handleSubmit(main:any) {
   this.formData=main.value;
   console.log(this.formData);
 
-  this.httpCliet.post('http://localhost:1999/guests/login',this.formData).subscribe((data:any)=>{
+  this.httpCliet.post('http://localhost:1999/Auth/login',this.formData).subscribe((data:any)=>{
     console.log(data)
 
    const info = data.user;
@@ -108,6 +108,7 @@ handleSubmit(main:any) {
      localStorage.setItem('username', info.username);
      localStorage.setItem('user_id', info.id);
      localStorage.setItem('token', data.token);
+     
      this.router.navigate(['/']);
    } else {
      console.log('No data returned.');
