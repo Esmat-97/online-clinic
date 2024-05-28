@@ -77,12 +77,8 @@ applyFilter(){
 
     /*         */
  
-
        filterMales(get:string){
         this.filterateData = this.doctors.filter(item => item.gender === get);
-          console.log(get)
-          console.log(this.filterateData)
-
        }
 
 
@@ -91,19 +87,15 @@ applyFilter(){
      /*           */
 
         filterFeMales(get:string){
-
         this.filterateData = this.doctors.filter(item => item.gender === get);
-           console.log(get)
-            console.log(this.filterateData)
-                          
-                  }                   
+         }                   
+
 
 
      /*            */      
 
 
     delete(id:number){   
-
      console.log(id)
   this.httpCliet.delete(`http://localhost:1999/doctor?id=${id}`).subscribe(  (res:any)=>{ 
    console.log(res); 
@@ -115,7 +107,6 @@ applyFilter(){
 
    /*              */           
                  
-          
          addToCart(doctor:any){
             console.log(doctor)
             this.cartService.addToCart(doctor);

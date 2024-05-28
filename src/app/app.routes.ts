@@ -11,7 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {path: 'doctors', component:DoctorsComponent},
-    {path: 'navi/:email', component:NavigateComponent},
+    {path: 'navi/:id', component:NavigateComponent},
     {path: 'cart', component:CartComponent},
     {path: 'add', component:AdddoctorsComponent},
     {path: 'login', component:LoginComponent},

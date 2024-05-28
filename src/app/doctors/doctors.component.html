@@ -42,7 +42,7 @@ type="text"
 
 <aside>
 
-<div class="row row-cols-1 row-cols-sm-5  row-cols-md-8   row-cols-lg-6  g-4">
+<div class="row row-cols-1 row-cols-sm-5  row-cols-md-3   row-cols-lg-3  g-4">
 
     <div class="col" *ngFor="let doctor of filterateData ; let i = index">
 
@@ -56,12 +56,33 @@ type="text"
     <div style="justify-content: space-between;">
 
       @if(role == 'Admin'){
-       <button class="btn btn-primary" (click)="handleNavigation(doctor.id)">more</button>
-    <button class="btn btn-danger" (click)="delete(doctor.id)">delete</button>
-    <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>
-      }
-
+     
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#delModal' + doctor.id">
+          delete
+        </button>
+        
+        <div class="modal fade" [id]="'delModal' + doctor.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Do you want to delete guest with ID: {{ doctor.username}}?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" (click)="delete(doctor.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
    
+      }
+   
+      <button class="btn btn-primary" (click)="handleNavigation(doctor.id)">more</button>
+      <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>
     </div>
   </div>
 </div>
