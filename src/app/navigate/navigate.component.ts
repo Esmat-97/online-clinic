@@ -27,7 +27,7 @@ export class NavigateComponent implements OnInit {
       ngOnInit() {
 
 
-        const email=this.activatedRoute.snapshot.params['email'];
+        const email=this.activatedRoute.snapshot.params['id'];
     console.log(email); 
 
 

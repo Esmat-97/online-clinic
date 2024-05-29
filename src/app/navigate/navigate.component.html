@@ -1,0 +1,269 @@
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10">
+          <h1>DOCTOR</h1>
+          <button type="button" class="btn btn-warning">Return to Profile</button>
+          <button type="button" class="btn btn-success">Access Calendar</button>
+          <br>
+        </div>
+        <div class="col-sm-2">
+          <a href="/users" class="pull-right">
+            <img title="profile image" class="img-circle img-responsive profile-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG685vI07-3MsuqJxjCfzIabfFJJG-8yM-ppvjjNpD5QNtWNE4A">
+          </a>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3">
+          <!--left col-->
+          <ul class="list-group profile-info">
+            <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Name: </strong></span> Joaquin Buenaobra</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Medical License Number: </strong></span> MNL09-F1SK5</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Address: </strong></span> Ermita, Manila</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Email: </strong></span> "jwbuenaobrahotmail.com"</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Birthday: </strong></span>3 May 1981</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Age: </strong></span>37</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Sex: </strong></span>M</li>
+            <li class="list-group-item text-muted" contenteditable="false">Contact Details</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Telephone Number: </strong></span>       514-1132</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Cellphone Number: </strong></span>09159092245</li>
+          </ul>
+          <div class="panel panel-default">
+            <div class="panel-heading">Reminders: </div>
+            <!-- <div class="panel-body">
+              <button type="button" class="btn btn-info">Patient Compliance<br>
+              <button type="button" class="btn btn-secondary">Approve Uploads
+            </div> -->
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">NOTIFICATIONS <i class="fa fa-link fa-1x"></i> </div>
+            <div class="panel-body">
+              <a href="http://bootply.com" class="">~Non-compliance to certainmedications</a>
+              <a href="http://bootply.com" class="">~Patient has not uploaded any data for the past 3 days</a>
+              <a href="http://bootply.com" class="">~Patient has not uploaded any data for the past 3 days</a>
+            </div>
+          </div>
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Patient List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Calendar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Reports</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+              <h3>Patient List</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>25</td>
+                    <td>M</td>
+                    <td>Ermita, Manila</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Jane Doe</td>
+                    <td>30</td>
+                    <td>F</td>
+                    <td>Ermita, Manila</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Bob Smith</td>
+                    <td>35</td>
+                    <td>M</td>
+                    <td>Ermita, Manila</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--/tab-pane-->
+            <div class="tab-pane" id="profile">
+              <h3>Calendar</h3>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Upcoming Appointments</div>
+                    <div class="panel-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Patient ID</th>
+                            <th>Patient Name</th>
+                            <th>Appointment Date</th>
+                            <th>Appointment Time</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>2023-02-15</td>
+                            <td>10:00 AM</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Jane Doe</td>
+                            <td>2023-02-16</td>
+                            <td>2:00 PM</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Bob Smith</td>
+                            <td>2023-02-17</td>
+                            <td>3:00 PM</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Past Appointments</div>
+                    <div class="panel-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Patient ID</th>
+                            <th>Patient Name</th>
+                            <th>Appointment Date</th>
+                            <th>Appointment Time</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>2023-02-10</td>
+                            <td>10:00 AM</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Jane Doe</td>
+                            <td>2023-02-11</td>
+                            <td>2:00 PM</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Bob Smith</td>
+                            <td>2023-02-12</td>
+                            <td>3:00 PM</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/tab-pane-->
+            <div class="tab-pane" id="messages">
+              <h3>Reports</h3>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Patient Reports</div>
+                    <div class="panel-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Patient ID</th>
+                            <th>Patient Name</th>
+                            <th>Report Date</th>
+                            <th>Report Type</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>2023-02-10</td>
+                            <td>Blood Test</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Jane Doe</td>
+                            <td>2023-02-11</td>
+                            <td>ECG</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Bob Smith</td>
+                            <td>2023-02-12</td>
+                            <td>X-Ray</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">Prescription Reports</div>
+                    <div class="panel-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Patient ID</th>
+                            <th>Patient Name</th>
+                            <th>Prescription Date</th>
+                            <th>Medication</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>2023-02-10</td>
+                            <td>Paracetamol</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Jane Doe</td>
+                            <td>2023-02-11</td>
+                            <td>Ibuprofen</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Bob Smith</td>
+                            <td>2023-02-12</td>
+                            <td>Amoxicillin</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/tab-pane-->
+          </div>
+          <!--/tab-content-->
+        </div>
+        <!--/col-9-->
+      </div>
+      <!--/row-->
+    </div>
+    <!--/container-->
+  </body>

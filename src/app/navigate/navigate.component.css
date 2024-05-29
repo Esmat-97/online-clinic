@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+ .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+ .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 20px;
+  }
+ .profile-info {
+    margin-top: 20px;
+  }
+ .profile-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+ .profile-info li {
+    margin-bottom: 10px;
+  }
+ .profile-info strong {
+    font-weight: bold;
+  }
