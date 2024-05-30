@@ -37,6 +37,11 @@ export class NavigateComponent implements OnInit {
       this.info=this.data[0]
       console.log(this.data[0]); 
     });
+
+    this.httpCliet.get(`http://localhost:1999/workinghours/${id}`).subscribe(  (res:any)=>{ 
+      console.log(res); 
+    });
+
       }
   
  
