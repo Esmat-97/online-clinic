@@ -1,20 +1,50 @@
-const express=require('express');
-const jwt = require('jsonwebtoken');
-const mysql=require('mysql');
-var bodyParser=require('body-parser');
+const express = require('express');
 const cors=require('cors');
-const app=express();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const { MongoClient , ObjectId } = require('mongodb');
 
+const app = express();
+const port = 3000;
+
+const uri = "mongodb://localhost:27017/";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+async function connectToDatabase() {
+    try {
+        await client.connect();
+        console.log("Connected to the database");
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+connectToDatabase();
+
+app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
-const con =  mysql.createConnection({
-host:'localhost',
-user:'root',
-password:'',
-database:'clinic'
+
+
+  
+app.get('/', async (req, res) => {
+    try {
+        const database = client.db("clinc");
+        const collection = database.collection("guests");
+
+        // Retrieve the inserted document
+        const doctors = await collection.find({ role: 'doctor' }).toArray();
+
+        // Send back the inserted document as the response
+        res.status(200).json(doctors);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error inserting document');
+    }
 });
 
 
@@ -22,45 +52,54 @@ database:'clinic'
 
 
 
-app.get('/', (req, res) => {
-    const query = 'SELECT * FROM guests WHERE role = ?';
-    const role = 'Doctor';
-    
-    con.query(query, [role], (error, results) => {
-      if (error) {
-        console.error('Error executing query', error);
-        res.status(500).send('Error executing query');
-        return;
-      }
+app.get('/navi/:id', async (req, res) => {
+    try {
+        const database = client.db("clinc");
+        const collection = database.collection("guests");
 
-      res.json(results);
-    });
-  });
-  
+        const documentId = req.params.id;
 
+        const result = await collection.findOne({ _id: new ObjectId(documentId) });
 
+        console.log(documentId)
 
-
-  app.delete('/', (req, res) => {
-
-
-    const {id} = req.query; 
-
-    if (!id) {
-      res.status(400).send('ID is required');
-      return;
+        if (result) {
+            res.status(200).json([result]);
+        } else {
+            res.status(404).send('Document not found');
+        }
+    } catch (error) {
+        console.error('Error fetching document:', error);
+        res.status(500).send('Error fetching document');
     }
-    const query = "DELETE  FROM guests WHERE id = ?";
+});
 
-    con.query(query, [id], (error, results) => {
-      if (error) {
-        console.error('Error executing query', error);
-        res.status(500).send('Error executing query');
-        return;
-      }
 
-      res.json(results);
-    });
-  });
+
+
+
+
+app.delete('/documents/:id', async (req, res) => {
+    try {
+
+        const database = client.db("clinc");
+        const collection = database.collection("guests");
+
+        const documentId = req.params.id;
+
+        const result = await collection.deleteOne({ _id: new ObjectId(documentId) });
+
+        if (result.deletedCount === 1) {
+            res.status(200).send('Document successfully deleted');
+        } else {
+            res.status(404).send('Document not found');
+        }
+    } catch (error) {
+        console.error('Error deleting document:', error);
+        res.status(500).send('Error deleting document');
+    }
+});
+
+
 
 module.exports = app;

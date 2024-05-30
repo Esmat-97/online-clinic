@@ -2,33 +2,26 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10">
-          <h1>DOCTOR</h1>
-          <button type="button" class="btn btn-warning">Return to Profile</button>
-          <button type="button" class="btn btn-success">Access Calendar</button>
-          <br>
+          <h1>{{info.username}}</h1>
+          <img title="profile image" class="img-circle img-responsive profile-image" src="../../assets/doctor.png" >
         </div>
-        <div class="col-sm-2">
-          <a href="/users" class="pull-right">
-            <img title="profile image" class="img-circle img-responsive profile-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG685vI07-3MsuqJxjCfzIabfFJJG-8yM-ppvjjNpD5QNtWNE4A">
-          </a>
-        </div>
+       
       </div>
       <br>
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3 col-lg-4">
           <!--left col-->
           <ul class="list-group profile-info">
             <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Name: </strong></span> Joaquin Buenaobra</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Medical License Number: </strong></span> MNL09-F1SK5</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Address: </strong></span> Ermita, Manila</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Email: </strong></span> "jwbuenaobrahotmail.com"</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Birthday: </strong></span>3 May 1981</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Age: </strong></span>37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Sex: </strong></span>M</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Name: </strong></span>{{info.username}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>specialty:</strong></span>{{info.specialty}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Address: </strong></span> {{info.location}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Email: </strong></span> {{info.email}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>years_of_experience : </strong></span>{{info.years_of_experience}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Sex: </strong></span>{{info.gender}}</li>
             <li class="list-group-item text-muted" contenteditable="false">Contact Details</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Telephone Number: </strong></span>       514-1132</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Cellphone Number: </strong></span>09159092245</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Cellphone Number: </strong></span>{{info.phone}}</li>
           </ul>
           <div class="panel panel-default">
             <div class="panel-heading">Reminders: </div>
@@ -47,6 +40,7 @@
           </div>
         </div>
         <!--/col-3-->
+        @if(role ==='doctor'){
         <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -261,6 +255,7 @@
           </div>
           <!--/tab-content-->
         </div>
+      }
         <!--/col-9-->
       </div>
       <!--/row-->

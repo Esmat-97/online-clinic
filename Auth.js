@@ -1,112 +1,75 @@
-const express=require('express');
-const jwt = require('jsonwebtoken');
-const mysql=require('mysql');
-var bodyParser=require('body-parser');
+const express = require('express');
 const cors=require('cors');
-const app=express();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const { MongoClient } = require('mongodb');
 
+const app = express();
+const port = 3000;
+
+const uri = "mongodb://localhost:27017/";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+async function connectToDatabase() {
+    try {
+        await client.connect();
+        console.log("Connected to the database");
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+connectToDatabase();
+
+app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
-
-
-const con =  mysql.createConnection({
-host:'localhost',
-user:'root',
-password:'',
-database:'clinic'
-});
-
-
-
-/*   */
-
-app.post('/signin', (req, res) => {
-  const { username, email, phone , password , gender,role ,  hospital, years_of_experience , specialty , location } = req.body;
-  // Insert data into MySQL
-  const query = 'INSERT INTO guests (username , email, phone, password ,gender, role , hospital ,years_of_experience, specialty , location ) VALUES (?,?,?,?,?, ?,?,?,?,?)';
-  con.query(query, [ username, email, phone, password ,gender, role , hospital, years_of_experience , specialty , location  ], (error, results) => {
-    if (error) throw error;
-    console.log('Data inserted into MySQL');
-    res.send('Data inserted into MySQL');
-  });
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
 
+  
+app.post('/', async (req, res) => {
+    try {
+        const database = client.db("clinc");
+        const collection = database.collection("guests");
+        
+        const doc = req.body;
 
-/*    */
+        const result = await collection.insertOne(doc);
 
-const secretKey = '111';
+        // Retrieve the inserted document
+        const insertedDoc = await collection.findOne({ _id: result.insertedId });
 
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  // Validate input
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password are required' });
-  }
-
-  // Prepare SQL query
-  const query = 'SELECT * FROM guests WHERE email = ? AND password = ?';
-
-  con.query(query, [email, password], (error, results) => {
-    if (error) {
-      console.error("Error executing query:", error);
-      return res.status(500).json({ error: "Failed to fetch data" });
+        // Send back the inserted document as the response
+        res.status(200).json([insertedDoc]);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error inserting document');
     }
-
-    if (results.length === 0) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-
-    // Generate JWT token
-    const payload = { email };
-    const token = jwt.sign(payload, secretKey, { expiresIn: '30m' });
-
-
-    // Send response
-    res.json({
-      user: results[0],
-      token
-    });
-  });
 });
 
 
 
 
-
-/*    */
-
-
-app.post('/logout', (req, res) => {
-  const token = req.headers.authorization.split(' ')[1];
-
-  if (!token) {
-    return res.status(400).json({ error: 'Token is required' });
-  }
-
+app.post('/login', async (req, res) => {
   try {
-    const decoded = jwt.verify(token, secretKey);
-    tokenBlacklist.add(token); // Add token to the blacklist
-    res.json({ message: 'Logout successful' });
-  } catch (error) {
-    res.status(401).json({ error: 'Invalid token' });
-  }
-});
+    const { email, password } = req.body;
 
+    const database = client.db("clinc");
+    const collection = database.collection("guests");
 
-app.use((req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (authHeader) {
-    const token = authHeader.split(' ')[1];
-    if (tokenBlacklist.has(token)) {
-      return res.status(401).json({ error: 'Token is blacklisted' });
+    const user = await collection.findOne({ email: email});
+    if (user.password !== password) {
+      return res.status(401).send('Incorrect password');
     }
+    res.status(200).json([user]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error during login');
   }
-  next();
 });
 
 

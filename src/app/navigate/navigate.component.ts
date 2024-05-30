@@ -22,21 +22,21 @@ export class NavigateComponent implements OnInit {
       
       hub:any;
       data:any=[];
+      info:any=[];
+      role:any='';
       httpCliet=inject(HttpClient)
     
       ngOnInit() {
+        this.role=localStorage.getItem('role')
 
+      const id=this.activatedRoute.snapshot.params['id'];
+    console.log(id); 
 
-        const email=this.activatedRoute.snapshot.params['id'];
-    console.log(email); 
-
-
-      
-        this.httpCliet.get('https://randomuser.me/api?results=50').subscribe((res:any)=>{
-          console.log(res.results)
-          this.data=res.results
-          console.log(this.data[3]); 
-        })
+    this.httpCliet.get(`http://localhost:1999/doctor/navi/${id}`).subscribe(  (res:any)=>{ 
+      this.data=res
+      this.info=this.data[0]
+      console.log(this.data[0]); 
+    });
       }
   
  

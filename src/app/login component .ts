@@ -99,15 +99,14 @@ handleSubmit(main:any) {
   this.httpCliet.post('http://localhost:1999/Auth/login',this.formData).subscribe((data:any)=>{
     console.log(data)
 
-   const info = data.user;
+   const info = data[0];
 
    if (info) {
      // Data is available, you can proceed with storing in localStorage or any other operations
      localStorage.setItem('email', info.email);
      localStorage.setItem('role', info.role);
      localStorage.setItem('username', info.username);
-     localStorage.setItem('user_id', info.id);
-     localStorage.setItem('token', data.token);
+     localStorage.setItem('user_id', info._id);
      
      this.router.navigate(['/']);
    } else {

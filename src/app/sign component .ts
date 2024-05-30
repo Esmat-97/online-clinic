@@ -209,7 +209,7 @@ handleSubmit(main:any) {
   this.formData=main.value;
   console.log(this.formData);
 
-  this.http.post('http://localhost:1999/Auth/signin', this.formData).subscribe( response => {
+  this.http.post('http://localhost:1999/Auth', this.formData).subscribe( response => {
       console.log('Data sent successfully');
       main.resetForm();
     },

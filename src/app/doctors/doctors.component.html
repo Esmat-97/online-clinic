@@ -57,11 +57,11 @@ type="text"
 
       @if(role == 'Admin'){
      
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#delModal' + doctor.id">
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#delModal' + doctor._id">
           delete
         </button>
         
-        <div class="modal fade" [id]="'delModal' + doctor.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" [id]="'delModal' + doctor._id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -73,7 +73,7 @@ type="text"
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" (click)="delete(doctor.id)">Delete</button>
+                <button type="button" class="btn btn-danger" (click)="delete(doctor._id)">Delete</button>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ type="text"
    
       }
    
-      <button class="btn btn-primary" (click)="handleNavigation(doctor.id)">more</button>
+      <button class="btn btn-primary" (click)="handleNavigation(doctor._id)">more</button>
       <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>
     </div>
   </div>
