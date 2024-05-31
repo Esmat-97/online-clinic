@@ -82,7 +82,9 @@ type="text"
       }
    
       <button class="btn btn-primary" (click)="handleNavigation(doctor._id)">more</button>
+      @if(role == 'Admin'){
       <button class="btn btn-warning" (click)="addToCart(doctor)">add to</button>
+      }
     </div>
   </div>
 </div>

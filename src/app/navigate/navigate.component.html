@@ -1,3 +1,4 @@
+
 <body>
     <div class="container">
       <div class="row">
@@ -36,9 +37,9 @@
           </div>
         </div>
 
-        @if( role =='patient' ){
+        @if( role ==='patient' ){
 
-        <form class="row g-3">
+        <form class="row g-3" #main="ngForm" (ngSubmit)="make(main)">
           <div class="col-md-6">
             <input type="hidden" class="form-control" id="inputEmail4" name="doctor_id" #doctor_id="ngModel" [(ngModel)]="info._id" >
           </div>
@@ -74,7 +75,7 @@
         <br>
    
         <!--/col-3-->
-        @if( role =='doctor' ){
+        @if( role ==='doctor'  ){
         <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -93,35 +94,17 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Patient ID</th>
                     <th>Patient Name</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                    <th>Address</th>
+                    <th>day</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>25</td>
-                    <td>M</td>
-                    <td>Ermita, Manila</td>
+                  
+                  <tr *ngFor="let x of appointment">
+                    <td>{{x.patient_name}}</td>
+                    <td>{{x.day}}</td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Jane Doe</td>
-                    <td>30</td>
-                    <td>F</td>
-                    <td>Ermita, Manila</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Bob Smith</td>
-                    <td>35</td>
-                    <td>M</td>
-                    <td>Ermita, Manila</td>
-                  </tr>
+              
                 </tbody>
               </table>
             </div>

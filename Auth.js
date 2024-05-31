@@ -38,13 +38,29 @@ app.post('/', async (req, res) => {
         
         const doc = req.body;
 
+        //check duplicate
+
+        const all = await collection.find({}).toArray();
+
+        let isDuplicate = false;
+
+        for (let appointment of all) {
+            if (appointment.email === doc.email ) {
+                isDuplicate = true;
+                break;
+            }
+        }
+
+        if (isDuplicate) {
+          res.status(409).send('Document duplicated'); // 409 Conflict for duplicate
+      } else {
+
         const result = await collection.insertOne(doc);
 
-        // Retrieve the inserted document
         const insertedDoc = await collection.findOne({ _id: result.insertedId });
 
-        // Send back the inserted document as the response
         res.status(200).json([insertedDoc]);
+      }
     } catch (error) {
         console.error(error);
         res.status(500).send('Error inserting document');
@@ -73,5 +89,19 @@ app.post('/login', async (req, res) => {
 });
 
 
+
+app.get('/', async (req, res) => {
+  try {
+      const database = client.db("clinc");
+      const collection = database.collection("guests");
+
+      const result = await collection.find({}).toArray();
+
+      res.status(200).json(result);
+  } catch (error) {
+      console.error('Error fetching documents:', error.message);
+      res.status(500).send(`Error fetching documents: ${error.message}`);
+  }
+});
 
 module.exports = app;
