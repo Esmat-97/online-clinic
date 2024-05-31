@@ -1,7 +1,5 @@
 const express = require('express');
 const cors=require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
 
