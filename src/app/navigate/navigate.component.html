@@ -9,11 +9,10 @@
       </div>
       <br>
       <div class="row">
-        <div class="col-sm-3 col-lg-4">
+        <div class="col-sm-3 col-lg-5">
           <!--left col-->
           <ul class="list-group profile-info">
             <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Name: </strong></span>{{info.username}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>specialty:</strong></span>{{info.specialty}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Address: </strong></span> {{info.location}}</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Email: </strong></span> {{info.email}}</li>
@@ -23,24 +22,59 @@
             <li class="list-group-item text-right"><span class="pull-left"><strong>Telephone Number: </strong></span>       514-1132</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Cellphone Number: </strong></span>{{info.phone}}</li>
           </ul>
-          <div class="panel panel-default">
-            <div class="panel-heading">Reminders: </div>
-            <!-- <div class="panel-body">
-              <button type="button" class="btn btn-info">Patient Compliance<br>
-              <button type="button" class="btn btn-secondary">Approve Uploads
-            </div> -->
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">NOTIFICATIONS <i class="fa fa-link fa-1x"></i> </div>
-            <div class="panel-body">
-              <a href="http://bootply.com" class="">~Non-compliance to certainmedications</a>
-              <a href="http://bootply.com" class="">~Patient has not uploaded any data for the past 3 days</a>
-              <a href="http://bootply.com" class="">~Patient has not uploaded any data for the past 3 days</a>
-            </div>
+  
+      
+        </div>
+
+
+        <div class="card text-bg-primary mb-3" style="max-width: 30rem; height: 250px;">
+          <div class="card-header">Working Hours</div>
+          <div class="card-body">
+            <h5 class="card-title">{{hours.day}}</h5>
+            <p class="card-text">From :{{hours.start_time}}</p>
+            <p class="card-text">To   :{{hours.end_time}}</p>
           </div>
         </div>
+
+        @if( role =='patient' ){
+
+        <form class="row g-3">
+          <div class="col-md-6">
+            <input type="hidden" class="form-control" id="inputEmail4" name="doctor_id" #doctor_id="ngModel" [(ngModel)]="info._id" >
+          </div>
+          <div class="col-md-6">
+            <input type="hidden" class="form-control" id="inputPassword4" name="patient_id" #patient_id="ngModel" [(ngModel)]="patientid">
+          </div>
+
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Name</label>
+            <input type="text" class="form-control" id="inputEmail4" name="doctor_name" #doctor_name="ngModel" [(ngModel)]="info.username">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">specialty</label>
+            <input type="text" class="form-control" id="inputPassword4" name="doctor_specialty" #doctor_specialty="ngModel" [(ngModel)]="info.specialty">
+          </div>
+
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Day</label>
+            <input type="text" class="form-control" id="inputAddress"  name="day" #day="ngModel" [(ngModel)]="hours.day">
+          </div>
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">patient</label>
+            <input type="text" class="form-control" id="inputAddress"  name="patient_name" #patient_name="ngModel" [(ngModel)]="username">
+          </div>
+
+       
+         
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Book</button>
+          </div>
+        </form>
+      }
+        <br>
+   
         <!--/col-3-->
-        @if(role ==='doctor'){
+        @if( role =='doctor' ){
         <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -256,6 +290,7 @@
           <!--/tab-content-->
         </div>
       }
+    
         <!--/col-9-->
       </div>
       <!--/row-->
