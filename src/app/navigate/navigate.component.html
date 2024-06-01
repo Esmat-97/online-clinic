@@ -68,14 +68,40 @@
        
          
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">Book</button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#delModal' +  patientid ">
+              Book
+            </button>
+            
+            <div class="modal fade" [id]="'delModal' +  patientid  " tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Do you want to book with doctor : {{ info.username}}?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">confirm</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       }
         <br>
+
+
+
+
+
+
    
         <!--/col-3-->
-        @if( role ==='doctor'  ){
+        @if(  patientid === doctorid  ){
         <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li class="nav-item">

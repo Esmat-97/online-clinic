@@ -1,26 +1,10 @@
 const express = require('express');
 const cors=require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const { MongoClient , ObjectId } = require('mongodb');
-
+const { toArray } = require('rxjs');
 const app = express();
-const port = 3000;
 
-const uri = "mongodb://localhost:27017/";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-async function connectToDatabase() {
-    try {
-        await client.connect();
-        console.log("Connected workinghours to the database");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-connectToDatabase();
 
 app.use(express.json());
 app.use(cors());
@@ -32,8 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/', async (req, res) => {
     try {
-        const database = client.db("clinc");
-        const collection = database.collection("workinghours");
+        const collection = req.database.collection("workinghours");
         
         const doc = req.body;
 
@@ -54,8 +37,7 @@ app.post('/', async (req, res) => {
 
 app.get('/:id', async (req, res) => {
     try {
-        const database = client.db("clinc");
-        const collection = database.collection("workinghours");
+        const collection = req.database.collection("workinghours");
 
         const documentId = req.params.id;
 
@@ -76,11 +58,23 @@ app.get('/:id', async (req, res) => {
 
 
 
+app.get('/', async (req, res) => {
+    try {
+        const collection = req.database.collection("workinghours");
+        const result = await collection.find({}).toArray();
+            res.status(200).json(result);
+  
+    } catch (error) {
+        console.error('Error fetching document:', error);
+        res.status(500).send('Error fetching document');
+    }
+});
+
+
+
 app.delete('documents/:id', async (req, res) => {
     try {
-
-        const database = client.db("clinc");
-        const collection = database.collection("workinghours");
+        const collection = req.database.collection("workinghours");
 
         const documentId = req.params.id;
 

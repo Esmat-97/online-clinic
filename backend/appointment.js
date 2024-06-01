@@ -2,23 +2,9 @@ const express = require('express');
 const cors=require('cors');
 const bodyParser = require('body-parser');
 const { MongoClient , ObjectId } = require('mongodb');
-
 const app = express();
 
 
-const uri = "mongodb://localhost:27017/";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-async function connectToDatabase() {
-    try {
-        await client.connect();
-        console.log("Connected appointment to the database");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-connectToDatabase();
 
 app.use(express.json());
 app.use(cors());
@@ -29,8 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/', async (req, res) => {
     try {
-        const database = client.db("clinc"); // Fixed typo
-        const collection = database.collection("appointment");
+    
+        const collection = req.database.collection("appointment");
 
         const doc = req.body;
 
@@ -69,13 +55,12 @@ app.post('/', async (req, res) => {
 
 app.get('/:id', async (req, res) => {
     try {
-        const database = client.db("clinc");
-        const collection = database.collection("appointment");
+
+        const collection = req.database.collection("appointment");
 
         const documentId = req.params.id;
 
         const result = await collection.find({ doctor_id:documentId}).toArray();
-
 
         if (result) {
             res.status(200).json(result);
@@ -96,8 +81,8 @@ app.get('/:id', async (req, res) => {
 
 app.get('/', async (req, res) => {
     try {
-        const database = client.db("clinc");
-        const collection = database.collection("appointment");
+      
+        const collection = req.database.collection("appointment");
 
         const result = await collection.find({}).toArray();
 
@@ -115,8 +100,8 @@ app.get('/', async (req, res) => {
 app.delete('/:id', async (req, res) => {
     try {
 
-        const database = client.db("clinc");
-        const collection = database.collection("appointment");
+        
+        const collection = req.database.collection("appointment");
 
         const documentId = req.params.id;
 

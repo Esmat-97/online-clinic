@@ -1,26 +1,10 @@
 const express = require('express');
 const cors=require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const { MongoClient , ObjectId } = require('mongodb');
-
 const app = express();
-const port = 3000;
 
-const uri = "mongodb://localhost:27017/";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-async function connectToDatabase() {
-    try {
-        await client.connect();
-        console.log("Connected doctors to the database");
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-connectToDatabase();
 
 app.use(express.json());
 app.use(cors());
@@ -33,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
   
 app.get('/', async (req, res) => {
     try {
-        const database = client.db("clinc");
-        const collection = database.collection("guests");
+        // const database = client.db("clinc");
+        const collection = req.database.collection("guests");
 
         // Retrieve the inserted document
         const doctors = await collection.find({ role: 'doctor' }).toArray();
@@ -54,8 +38,8 @@ app.get('/', async (req, res) => {
 
 app.get('/navi/:id', async (req, res) => {
     try {
-        const database = client.db("clinc");
-        const collection = database.collection("guests");
+        // const database = client.db("clinc");
+        const collection = req.database.collection("guests");
 
         const documentId = req.params.id;
 
@@ -82,8 +66,8 @@ app.get('/navi/:id', async (req, res) => {
 app.delete('/documents/:id', async (req, res) => {
     try {
 
-        const database = client.db("clinc");
-        const collection = database.collection("guests");
+        // const database = client.db("clinc");
+        const collection = req.database.collection("guests");
 
         const documentId = req.params.id;
 
