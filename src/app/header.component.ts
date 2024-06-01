@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login component ';
+import { UserComponent } from './users';
 import { AuthService } from './services/auth.service';
 import { NgClass } from '@angular/common';
 import { NgStyle } from '@angular/common';
@@ -12,7 +13,7 @@ import { NgStyle } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,DoctorsComponent,CartComponent,LoginComponent,NgClass,NgStyle],
+  imports: [RouterOutlet,RouterLink,DoctorsComponent,UserComponent,CartComponent,LoginComponent,NgClass,NgStyle],
   template: `
   <nav class="navbar navbar-expand-lg bg-info">
   <div class="container-fluid">
@@ -42,7 +43,7 @@ import { NgStyle } from '@angular/common';
         Admin list
       </button>
       <ul class="dropdown-menu" [ngStyle]="{'display': isDropdownOpen ? 'block' : 'none'}">
-        <li><a class="dropdown-item" routerLink="users"> users</a></li>
+        <li><a class="dropdown-item" routerLink="user"> users</a></li>
         <li><a class="dropdown-item" routerLink="msgs"> msgs</a></li>
         <li><a class="dropdown-item" routerLink="showreview"> reviews</a></li>
         <li><a class="dropdown-item" routerLink="Addproduct">Add products</a></li>

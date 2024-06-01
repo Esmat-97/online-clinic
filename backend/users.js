@@ -1,12 +1,9 @@
 const express = require('express');
 const cors=require('cors');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 const { MongoClient , ObjectId } = require('mongodb');
 
 const app = express();
-const port = 3000;
 
 const uri = "mongodb://localhost:27017/";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -14,7 +11,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function connectToDatabase() {
     try {
         await client.connect();
-        console.log("Connected workinghours to the database");
+        console.log("Connected  users to the database");
     } catch (error) {
         console.error(error);
     }
@@ -30,20 +27,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-app.post('/', async (req, res) => {
+  
+app.get('/', async (req, res) => {
     try {
         const database = client.db("clinc");
-        const collection = database.collection("workinghours");
-        
-        const doc = req.body;
-
-        const result = await collection.insertOne(doc);
+        const collection = database.collection("guests");
 
         // Retrieve the inserted document
-        const insertedDoc = await collection.findOne({ _id: result.insertedId });
+        const doctors = await collection.find({}).toArray();
 
         // Send back the inserted document as the response
-        res.status(200).json([insertedDoc]);
+        res.status(200).json(doctors);
     } catch (error) {
         console.error(error);
         res.status(500).send('Error inserting document');
@@ -52,14 +46,17 @@ app.post('/', async (req, res) => {
 
 
 
-app.get('/:id', async (req, res) => {
+
+
+
+app.get('/navi/:id', async (req, res) => {
     try {
         const database = client.db("clinc");
-        const collection = database.collection("workinghours");
+        const collection = database.collection("guests");
 
         const documentId = req.params.id;
 
-        const result = await collection.findOne({ doctor_id:documentId});
+        const result = await collection.findOne({ _id: new ObjectId(documentId) });
 
         console.log(documentId)
 
@@ -76,11 +73,14 @@ app.get('/:id', async (req, res) => {
 
 
 
-app.delete('documents/:id', async (req, res) => {
+
+
+
+app.delete('/documents/:id', async (req, res) => {
     try {
 
         const database = client.db("clinc");
-        const collection = database.collection("workinghours");
+        const collection = database.collection("guests");
 
         const documentId = req.params.id;
 

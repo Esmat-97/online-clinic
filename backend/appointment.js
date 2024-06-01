@@ -12,7 +12,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function connectToDatabase() {
     try {
         await client.connect();
-        console.log("Connected to the database");
+        console.log("Connected appointment to the database");
     } catch (error) {
         console.error(error);
     }

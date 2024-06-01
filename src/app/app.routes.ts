@@ -7,6 +7,8 @@ import { AdddoctorsComponent } from './adddoctors component';
 
 import { SignComponent } from './sign component ';
 import { LoginComponent } from './login component ';
+import { appointmentComponent } from './appointment';
+import { UserComponent } from './users';
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -16,5 +18,7 @@ export const routes: Routes = [
     {path: 'add', component:AdddoctorsComponent},
     {path: 'login', component:LoginComponent},
     {path: 'sign', component:SignComponent},
+    {path: 'appoin', component:appointmentComponent},
+    {path: 'user', component:UserComponent},
     {path: '', component:HomeComponent}
 ];
