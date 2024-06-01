@@ -8,6 +8,8 @@ import { AuthService } from './services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 
+import { HOST_NAME } from './constant';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -96,7 +98,7 @@ handleSubmit(main:any) {
   this.formData=main.value;
   console.log(this.formData);
 
-  this.httpCliet.post('http://localhost:1999/Auth/login',this.formData).subscribe((data:any)=>{
+  this.httpCliet.post(`${HOST_NAME}/Auth/login`,this.formData).subscribe((data:any)=>{
     console.log(data)
 
    const info = data[0];

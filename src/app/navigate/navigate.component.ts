@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HOST_NAME } from '../constant';
 
 @Component({
   selector: 'app-navigate',
@@ -48,20 +49,20 @@ export class NavigateComponent implements OnInit {
      this.doctorid=this.activatedRoute.snapshot.params['id'];
     console.log(this.doctorid); 
 
-    this.httpCliet.get(`http://localhost:1999/doctor/navi/${this.doctorid}`).subscribe(  (res:any)=>{ 
+    this.httpCliet.get(`${HOST_NAME}/doctor/navi/${this.doctorid}`).subscribe(  (res:any)=>{ 
       this.data=res
       this.info=this.data[0]
       console.log(this.info); 
     });
 
-    this.httpCliet.get(`http://localhost:1999/workinghours/${this.doctorid}`).subscribe(  (res:any)=>{ 
+    this.httpCliet.get(`${HOST_NAME}/workinghours/${this.doctorid}`).subscribe(  (res:any)=>{ 
       this.working=res
       this.hours=this.working[0]
       console.log(this.hours); 
     });
 
 
-    this.httpCliet.get(`http://localhost:1999/appointment/${this.doctorid}`).subscribe(  (res:any)=>{ 
+    this.httpCliet.get(`${HOST_NAME}/appointment/${this.doctorid}`).subscribe(  (res:any)=>{ 
       this.appointment=res
       console.log(this.appointment); 
     });
@@ -75,7 +76,7 @@ export class NavigateComponent implements OnInit {
       make(main:any) {
       
         console.log(main.value)
-        this.httpCliet.post('http://localhost:1999/appointment',main.value).subscribe( response => {
+        this.httpCliet.post(`${HOST_NAME}/appointment`,main.value).subscribe( response => {
             console.log('Data sent successfully');
             main.resetForm();
           },

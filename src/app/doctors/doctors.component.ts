@@ -10,6 +10,7 @@ import { FooterComponent } from '../footer.component';
 import { HeaderComponent } from '../header.component';
 import { Route, Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { HOST_NAME } from '../constant';
 
 
 
@@ -41,7 +42,7 @@ ngOnInit(){
   
   this.role=localStorage.getItem('role') as string
 
-  this.httpCliet.get('http://localhost:1999/doctor').subscribe(  (res:any)=>{ 
+  this.httpCliet.get(`${HOST_NAME}/doctor`).subscribe(  (res:any)=>{ 
     
      this.filterateData=res;
     this.doctors = res; 
@@ -98,7 +99,7 @@ applyFilter(){
 
     delete(id:number){   
      console.log(id)
-  this.httpCliet.delete(`http://localhost:1999/doctor/documents/${id}`).subscribe(  (res:any)=>{ 
+  this.httpCliet.delete(`${HOST_NAME}/doctor/documents/${id}`).subscribe(  (res:any)=>{ 
    console.log(res); 
  });
 

@@ -4,6 +4,8 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { HOST_NAME } from './constant';
+
 
 
 
@@ -209,7 +211,7 @@ handleSubmit(main:any) {
   this.formData=main.value;
   console.log(this.formData);
 
-  this.http.post('http://localhost:1999/Auth', this.formData).subscribe( response => {
+  this.http.post(`${HOST_NAME}/Auth`, this.formData).subscribe( response => {
       console.log('Data sent successfully');
       main.resetForm();
     },
