@@ -10,6 +10,8 @@ import { LoginComponent } from './login component ';
 import { appointmentComponent } from './appointment';
 import { UserComponent } from './users';
 import { AuthGuard } from './guards/auth.guard';
+import { contactComponent } from './contactus';
+import { msgsComponent } from './msgs';
 
 export const routes: Routes = [
     {path: 'doctors', component:DoctorsComponent},
@@ -20,5 +22,7 @@ export const routes: Routes = [
     {path: 'sign', component:SignComponent},
     {path: 'appoin', component:appointmentComponent},
     {path: 'user', component:UserComponent},
+    {path: 'contact', component:contactComponent},
+    {path: 'msgs', component:msgsComponent},
     {path: '', component:HomeComponent}
 ];

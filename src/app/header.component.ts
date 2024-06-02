@@ -29,6 +29,11 @@ import { NgStyle } from '@angular/common';
         <li class="nav-item">
           <a class="nav-link" routerLink="doctors" href="#">doctors</a>
         </li>
+       @if(role){
+        <li class="nav-item">
+        <a class="nav-link" routerLink="contact" href="#">contact us</a>
+      </li>
+       }
         <li class="nav-item">
           <a class="nav-link" routerLink="cart" href="#">cart</a>
         </li>
