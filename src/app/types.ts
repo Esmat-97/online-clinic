@@ -1,12 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Specialties</title>
-   <style>  
-   
-   * {
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { HOST_NAME } from './constant';
+import { NgFor } from '@angular/common';
+
+@Component({
+  selector: 'app-types',
+  standalone: true,
+  imports: [NgFor],
+  template: `
+  <div class="container" >
+        
+  <h1>Top Specialties</h1>
+  <div class="books">
+
+      <div class="book" id="og-book" *ngFor="let x of data">
+          <div class="title"> {{x.name}} </div>
+      </div>
+
+  </div>
+</div>
+`,
+
+  styles: [`
+
+     * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -59,21 +77,22 @@ h1 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
 }
-   </style>
+  `]
+})
 
-</head>
-<body>
-    <div class="container" >
-        
-        <h1>Top Specialties</h1>
-        <div class="books">
 
-            <div class="book" id="og-book" *ngFor="let x of data">
-                <div class="title"> {{x.name}} </div>
-            </div>
-      
-        </div>
-    </div>
-  
-</body>
-</html>
+export class TypesComponent {
+
+httpclint=inject(HttpClient)
+
+data:any=[];
+
+ngOnInit(){
+  this.httpclint.get(`${HOST_NAME}/specialty`).subscribe((res:any)=>{
+this.data=res;
+console.log(this.data)
+  })
+}
+
+
+}

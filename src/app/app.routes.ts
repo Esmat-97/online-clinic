@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { NavigateComponent } from './navigate/navigate.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home.component';
 import { CartComponent } from './cart/cart.component';
 import { AdddoctorsComponent } from './adddoctors component';
 
-import { SignComponent } from './sign component ';
+import { SignComponent } from './sign';
 import { LoginComponent } from './login component ';
 import { appointmentComponent } from './appointment';
 import { UserComponent } from './users';
