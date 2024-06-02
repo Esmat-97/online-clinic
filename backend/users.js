@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
   
 app.get('/', async (req, res) => {
     try {
-        // const database = client.db("clinc");
         const collection = req.database.collection("guests");
 
         // Retrieve the inserted document

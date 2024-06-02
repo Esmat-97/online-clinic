@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { DoctorsComponent } from './doctors/doctors.component';
 import { CartComponent } from './cart/cart.component';
-import { LoginComponent } from './login component ';
+import { LoginComponent } from './login.component ';
 import { UserComponent } from './users';
 import { AuthService } from './services/auth.service';
 import { NgClass } from '@angular/common';
@@ -33,10 +33,15 @@ import { NgStyle } from '@angular/common';
         <li class="nav-item">
         <a class="nav-link" routerLink="contact" href="#">contact us</a>
       </li>
+      <li class="nav-item">
+      <a class="nav-link" routerLink="review" href="#">review</a>
+    </li>
+
+      <li class="nav-item">
+      <a class="nav-link" routerLink="cart" href="#">cart</a>
+    </li>
        }
-        <li class="nav-item">
-          <a class="nav-link" routerLink="cart" href="#">cart</a>
-        </li>
+    
   
         <li class="nav-item ">
     <a class="nav-link"  (click)="do()">login</a>
@@ -51,8 +56,6 @@ import { NgStyle } from '@angular/common';
         <li><a class="dropdown-item" routerLink="user"> users</a></li>
         <li><a class="dropdown-item" routerLink="msgs"> msgs</a></li>
         <li><a class="dropdown-item" routerLink="showreview"> reviews</a></li>
-        <li><a class="dropdown-item" routerLink="Addproduct">Add products</a></li>
-        <li><a class="dropdown-item"  routerLink="Addusers">Add users</a></li>
       </ul>
     </div>
       }

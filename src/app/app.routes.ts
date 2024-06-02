@@ -6,12 +6,14 @@ import { CartComponent } from './cart/cart.component';
 import { AdddoctorsComponent } from './adddoctors component';
 
 import { SignComponent } from './sign';
-import { LoginComponent } from './login component ';
+import { LoginComponent } from './login.component ';
 import { appointmentComponent } from './appointment';
 import { UserComponent } from './users';
 import { AuthGuard } from './guards/auth.guard';
 import { contactComponent } from './contactus';
 import { msgsComponent } from './msgs';
+import { reviewComponent } from './review';
+import { showreviewComponent } from './showreview';
 
 export const routes: Routes = [
     {path: 'doctors', component:DoctorsComponent},
@@ -24,5 +26,7 @@ export const routes: Routes = [
     {path: 'user', component:UserComponent},
     {path: 'contact', component:contactComponent},
     {path: 'msgs', component:msgsComponent},
+    {path: 'review', component:reviewComponent},
+    {path: 'showreview', component:showreviewComponent},
     {path: '', component:HomeComponent}
 ];

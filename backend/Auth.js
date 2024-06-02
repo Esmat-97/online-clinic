@@ -58,10 +58,17 @@ app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-  
+
     const collection = req.database.collection("guests");
 
     const user = await collection.findOne({ email: email});
+
+    if (!user) {
+      // If no user is found with the given email
+      return res.status(404).send('User not found');
+    }
+
+
     if (user.password !== password) {
       return res.status(401).send('Incorrect password');
     }

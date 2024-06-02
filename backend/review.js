@@ -17,8 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
   
 app.get('/', async (req, res) => {
     try {
-       
-        const collection = req.database.collection("contact");
+        const collection = req.database.collection("review");
         // Retrieve the inserted document
         const doctors = await collection.find({}).toArray();
 
@@ -36,7 +35,8 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        const collection = req.database.collection("contact");
+        const collection = req.database.collection("review");
+
         const all = await collection.find({}).toArray();
 
         const doc = req.body;
@@ -52,6 +52,7 @@ app.post('/', async (req, res) => {
         if (isDuplicate) {
           res.status(409).send('Document duplicated'); // 409 Conflict for duplicate
       } else {
+
 
         const result = await collection.insertOne(doc);
 
@@ -73,7 +74,7 @@ app.post('/', async (req, res) => {
 
 app.delete('/documents/:id', async (req, res) => {
     try {
-        const collection = req.database.collection("contact");
+        const collection = req.database.collection("review");
 
         const documentId = req.params.id;
 
@@ -91,5 +92,30 @@ app.delete('/documents/:id', async (req, res) => {
 });
 
 
+
+
+
+
+app.put('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    try {
+        const collection = req.database.collection("review");
+        const result = await collection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: updateData }
+        );
+
+        if (result.matchedCount === 0) {
+            res.status(404).send('Document not found');
+        } else {
+            res.status(200).send('Document updated successfully');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating document');
+    }
+});
 
 module.exports = app;
