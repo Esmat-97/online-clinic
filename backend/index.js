@@ -6,6 +6,7 @@ const workinghoursRouter = require('./workinghours');
 const appointmentRouter = require('./appointment');
 const userRouter = require('./users');
 const contactRouter = require('./contact');
+const specialtyRouter = require('./specialty');
 const connectToDatabase = require('./dbMiddleware');
 
 
@@ -19,6 +20,7 @@ app.use('/workinghours', workinghoursRouter);
 app.use('/appointment', appointmentRouter);
 app.use('/users', userRouter);
 app.use('/contact', contactRouter);
+app.use('/specialty', specialtyRouter);
 
 
 const port = 1999;

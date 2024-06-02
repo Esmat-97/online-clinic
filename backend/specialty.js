@@ -12,13 +12,31 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
+app.post('/', async (req, res) => {
+    try {
+        const collection = req.database.collection("specialty");
+        
+        const doc = req.body;
+
+        const result = await collection.insertOne(doc);
+
+        // Retrieve the inserted document
+        const insertedDoc = await collection.findOne({ _id: result.insertedId });
+
+        // Send back the inserted document as the response
+        res.status(200).json([insertedDoc]);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error inserting document');
+    }
+});
 
 
   
 app.get('/', async (req, res) => {
     try {
         // const database = client.db("clinc");
-        const collection = req.database.collection("guests");
+        const collection = req.database.collection("specialty");
 
         // Retrieve the inserted document
         const doctors = await collection.find({}).toArray();
@@ -39,7 +57,7 @@ app.put('/update/:id', async (req, res) => {
     const updateData = req.body;
 
     try {
-        const collection = req.database.collection("guests");
+        const collection = req.database.collection("specialty");
         const result = await collection.updateOne(
             { _id: new ObjectId(id) },
             { $set: updateData }
@@ -64,8 +82,7 @@ app.put('/update/:id', async (req, res) => {
 app.delete('/documents/:id', async (req, res) => {
     try {
 
-        // const database = client.db("clinc");
-        const collection = req.database.collection("guests");
+        const collection = req.database.collection("specialty");
 
         const documentId = req.params.id;
 

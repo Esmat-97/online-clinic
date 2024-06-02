@@ -67,21 +67,11 @@ h1 {
         
         <h1>Top Specialties</h1>
         <div class="books">
-            <div class="book" id="og-book">
-                <div class="title">OG</div>
+
+            <div class="book" id="og-book" *ngFor="let x of data">
+                <div class="title"> {{x.name}} </div>
             </div>
-            <div class="book" id="brain-nerves-book">
-                <div class="title">Brain & Nerves</div>
-            </div>
-            <div class="book" id="bones-book">
-                <div class="title">Bones</div>
-            </div>
-            <div class="book" id="gynaecology-book">
-                <div class="title">Gynaecology and Infertility</div>
-            </div>
-            <div class="book" id="ent-book">
-                <div class="title">Ear, Nose and Throat</div>
-            </div>
+      
         </div>
     </div>
   
