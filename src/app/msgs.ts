@@ -71,7 +71,6 @@ export class msgsComponent {
 
 
     delete(id:any){
- 
         this.httpCliet.delete(`${HOST_NAME}/contact/documents/${id}`).subscribe(  (res:any)=>{ 
             this.users=res;
            console.log(this.users); 

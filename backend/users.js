@@ -34,6 +34,28 @@ app.get('/', async (req, res) => {
 
 
 
+app.put('/update/:id', async (req, res) => {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    try {
+        const collection = req.database.collection("guests");
+        const result = await collection.updateOne(
+            { _id: new ObjectId(id) },
+            { $set: updateData }
+        );
+
+        if (result.matchedCount === 0) {
+            res.status(404).send('Document not found');
+        } else {
+            res.status(200).send('Document updated successfully');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating document');
+    }
+});
+
 
 
 
