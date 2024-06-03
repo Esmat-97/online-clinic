@@ -7,7 +7,7 @@ import { AdddoctorsComponent } from './adddoctors component';
 
 import { SignComponent } from './sign';
 import { LoginComponent } from './login.component ';
-import { appointmentComponent } from './appointment';
+import { appoinComponent } from './appiont';
 import { UserComponent } from './users';
 import { AuthGuard } from './guards/auth.guard';
 import { contactComponent } from './contactus';
@@ -22,11 +22,11 @@ export const routes: Routes = [
     {path: 'add', component:AdddoctorsComponent},
     {path: 'login', component:LoginComponent},
     {path: 'sign', component:SignComponent},
-    {path: 'appoin', component:appointmentComponent},
     {path: 'user', component:UserComponent},
     {path: 'contact', component:contactComponent},
     {path: 'msgs', component:msgsComponent},
     {path: 'review', component:reviewComponent},
     {path: 'showreview', component:showreviewComponent},
+    {path: 'appoin', component:appoinComponent},
     {path: '', component:HomeComponent}
 ];

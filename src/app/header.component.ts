@@ -56,6 +56,7 @@ import { NgStyle } from '@angular/common';
         <li><a class="dropdown-item" routerLink="user"> users</a></li>
         <li><a class="dropdown-item" routerLink="msgs"> msgs</a></li>
         <li><a class="dropdown-item" routerLink="showreview"> reviews</a></li>
+        <li><a class="dropdown-item" routerLink="appoin"> appointment</a></li>
       </ul>
     </div>
       }

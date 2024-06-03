@@ -15,6 +15,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
   
+app.get('/accept', async (req, res) => {
+    try {
+        const collection = req.database.collection("review");
+        // Retrieve the inserted document
+        const doctors = await collection.find({status:'accept'}).toArray();
+
+        // Send back the inserted document as the response
+        res.status(200).json(doctors);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error inserting document');
+    }
+});
+
+
+
 app.get('/', async (req, res) => {
     try {
         const collection = req.database.collection("review");

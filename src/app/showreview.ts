@@ -56,9 +56,21 @@ import { FormsModule } from '@angular/forms';
 
 
       <td>
-      <button type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#upModal' + x._id">
+      @if(x.status === 'accept'){
+
+      
+      <button type="button" class="btn btn-info" data-bs-toggle="modal" [attr.data-bs-target]="'#upModal' + x._id">
+      accepted
+    </button>
+
+      }
+
+      @else{
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" [attr.data-bs-target]="'#upModal' + x._id">
       accept
     </button>
+
+      }
     
     <div class="modal fade" [id]="'upModal' + x._id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -84,6 +96,7 @@ import { FormsModule } from '@angular/forms';
       </div>
     </div>
 
+      
       </td>
     </tr>
 

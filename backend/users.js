@@ -32,6 +32,23 @@ app.get('/', async (req, res) => {
 
 
 
+  
+app.get('/', async (req, res) => {
+    try {
+        const collection = req.database.collection("guests");
+
+        // Retrieve the inserted document
+        const doctors = await collection.find({}).toArray();
+
+        // Send back the inserted document as the response
+        res.status(200).json(doctors);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error inserting document');
+    }
+});
+
+
 
 app.put('/update/:id', async (req, res) => {
     const { id } = req.params;
