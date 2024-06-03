@@ -25,5 +25,11 @@ https://github.com/Esmat-97/online-clinic/assets/158211063/464d2803-304c-4989-9d
 # Doctor page
 https://github.com/Esmat-97/online-clinic/assets/158211063/1e798c4b-9a4d-4beb-942e-c0095cd54ad4
 
+# Admin page
+
+https://github.com/Esmat-97/online-clinic/assets/158211063/e46388aa-ea90-413c-a2fb-b8be41d07d72
+
+
+
 
 
