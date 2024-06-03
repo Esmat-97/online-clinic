@@ -8,6 +8,7 @@ const userRouter = require('./users');
 const contactRouter = require('./contact');
 const specialtyRouter = require('./specialty');
 const reviewRouter = require('./review');
+const dashboardRouter = require('./dashboard');
 const connectToDatabase = require('./dbMiddleware');
 
 
@@ -23,6 +24,7 @@ app.use('/users', userRouter);
 app.use('/contact', contactRouter);
 app.use('/specialty', specialtyRouter);
 app.use('/review', reviewRouter);
+app.use('/dashboard', dashboardRouter);
 
 
 const port = 1999;
